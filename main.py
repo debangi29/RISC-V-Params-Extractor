@@ -46,8 +46,8 @@ def main():
     print()
     
     # Step 3: Extract parameters using different prompt strategies
-    # prompt_strategies = ["zero_shot", "one_shot", "few_shot", "chain_of_thought", "tree_of_thoughts"]
-    prompt_strategies = ["one_shot"]
+    prompt_strategies = ["zero_shot", "one_shot", "few_shot", "chain_of_thought", "tree_of_thoughts"]
+    # prompt_strategies = ["one_shot"]
  
     for strategy in prompt_strategies:
         print(f"\nStep 3.{prompt_strategies.index(strategy) + 1}: Extracting with {strategy} strategy...")

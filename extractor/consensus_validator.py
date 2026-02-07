@@ -139,10 +139,21 @@ class ConsensusValidator:
             merged["type"] = type_counter.most_common(1)[0][0]
         
         # Collect all constraints
-        constraints = [v.get("constraints", "") for v in versions if v.get("constraints")]
+        constraints = []
+        for v in versions:
+            constraint = v.get("constraints")
+            if constraint:
+                # Convert to string if it's not already a string or list
+                if isinstance(constraint, (str, list)):
+                    constraints.append(constraint)
+                else:
+                    # Convert other types (int, float, etc.) to string
+                    constraints.append(str(constraint))
+        
         if constraints:
             # Use longest constraints
-            merged["constraints"] = max(constraints, key=len)
+            # For lists, convert to string representation for comparison
+            merged["constraints"] = max(constraints, key=lambda x: len(str(x)) if not isinstance(x, str) else len(x))
         
         # Collect all keywords
         all_keywords = []

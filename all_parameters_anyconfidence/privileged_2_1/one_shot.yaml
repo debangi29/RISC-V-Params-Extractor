@@ -1,6 +1,9 @@
 metadata:
-  extraction_date: '2026-02-07T23:19:22.867986'
+  source_file: privileged_2_1.txt
   prompt_strategy: one_shot
+  confidence_threshold: '>= 0.1'
+  total_parameters: 18
+  extraction_date: '2026-02-07T23:19:22.867986'
   models_used:
   - full_name: deepseek/deepseek-v3.2
     provider: deepseek
@@ -42,115 +45,7 @@ metadata:
     provider: mistralai
     model: ministral-14b-2512
     access_method: OpenRouter API
-  total_snippets: 2
 parameters:
-- name: cache_block_size
-  description: Size of an individual cache block, representing a contiguous, naturally
-    aligned power-of-two (or NAPOT) range of memory locations
-  type: implementation-specific
-  constraints:
-  - Must be a contiguous, naturally aligned power-of-two (Napot) range of memory locations.
-  - Shall be uniform throughout the system (for the initial set of CMO extensions).
-  source: privileged_19_3_1.txt
-  keywords:
-  - uniform
-  - shall be uniform
-  - implementation-specific
-  - NAPOT
-  - implementation-defined
-  - power-of-two
-  - shall
-  confidence:
-    score: 0.9
-    level: high
-    agreement: 9/10 models
-- name: cache_capacity
-  description: Total capacity of a cache that stores data copies
-  type: implementation-specific
-  constraints: Implementation determines the capacity; no fixed value mandated
-  source: privileged_19_3_1.txt
-  keywords:
-  - implementation-specific
-  - capacity
-  confidence:
-    score: 0.8
-    level: high
-    agreement: 8/10 models
-- name: cache_organization
-  description: Internal structure or arrangement of a cache (e.g., associativity,
-    ways, sets)
-  type: implementation-specific
-  constraints: Implementation defines the organization; no uniform requirements
-  source: privileged_19_3_1.txt
-  keywords:
-  - implementation-specific
-  - organization
-  - organization of a cache
-  confidence:
-    score: 0.8
-    level: high
-    agreement: 8/10 models
-- name: cache_block_alignment
-  description: Alignment requirement for cache block memory locations
-  type: implementation-specific
-  constraints: Must be naturally aligned to a power‑of‑two or NAPOT boundary
-  source: privileged_19_3_1.txt
-  keywords:
-  - power-of-two
-  - NAPOT
-  - alignment
-  confidence:
-    score: 0.1
-    level: low
-    agreement: 1/10 models
-- name: cache_capacity_and_organization
-  description: Total capacity and structural organization of a cache (e.g., levels,
-    associativity, number of sets)
-  type: implementation-specific
-  constraints: None explicitly stated beyond being implementation-specific
-  source: privileged_19_3_1.txt
-  keywords:
-  - implementation-specific
-  confidence:
-    score: 0.1
-    level: low
-    agreement: 1/10 models
-- name: uniform_cache_block_size
-  description: Indicates that the size of a cache block shall be uniform throughout
-    the system
-  type: configurable
-  constraints: Must be uniform across the system
-  source: privileged_19_3_1.txt
-  keywords:
-  - shall
-  confidence:
-    score: 0.1
-    level: low
-    agreement: 1/10 models
-- name: cache_block_uniformity
-  description: Whether cache block size is uniform throughout the system
-  type: mandatory
-  constraints: Cache block size must be uniform
-  source: privileged_19_3_1.txt
-  keywords:
-  - shall
-  confidence:
-    score: 0.1
-    level: low
-    agreement: 1/10 models
-- name: discovery_mechanism
-  description: The method provided by the execution environment for software to identify
-    cache characteristics
-  type: implementation-specific
-  constraints: Must provide a means to discover information about caches and cache
-    blocks
-  source: privileged_19_3_1.txt
-  keywords:
-  - provides
-  confidence:
-    score: 0.1
-    level: low
-    agreement: 1/10 models
 - name: csr_address_space_size
   description: 'Defines the total number of bits reserved for CSR addressing. The
     standard RISC-V ISA allocates 12 bits (csr[11:0]) for up to 4,096 CSRs.
@@ -162,7 +57,6 @@ parameters:
     stated here).
 
     '
-  source: privileged_2_1.txt
   keywords:
   - sets aside
   - 096 CSRs
@@ -171,41 +65,36 @@ parameters:
   - up to 4
   - implementation-defined
   - 12-bit encoding space
-  confidence:
-    score: 0.2
-    level: low
-    agreement: 2/10 models
+  confidence_score: 0.2
+  confidence_level: low
+  model_agreement: 2/10 models
 - name: csr_minimum_privilege_level
   description: The lowest privilege level required to access a specific CSR address
     as encoded in bits csr[9:8].
   type: implementation-defined
   constraints: Encoded in csr[9:8]; must correspond to standard privilege levels (e.g.,
     U/S/M)
-  source: privileged_2_1.txt
   keywords:
   - encode
   - lowest privilege level that can access the CSR
   - convention
-  confidence:
-    score: 0.2
-    level: low
-    agreement: 2/10 models
+  confidence_score: 0.2
+  confidence_level: low
+  model_agreement: 2/10 models
 - name: csr_accessibility
   description: Read and write accessibility of CSRs based on privilege level
   type: implementation-specific
   constraints:
   - Top 2 bits (csr[11:10]) indicate read/write (00, 01, 10) or read-only (11)
   - Next 2 bits (csr[9:8]) encode the lowest privilege level that can access the CSR
-  source: privileged_2_1.txt
   keywords:
   - accessibility
   - privilege level
   - conventional
   - by convention
-  confidence:
-    score: 0.2
-    level: low
-    agreement: 2/10 models
+  confidence_score: 0.2
+  confidence_level: low
+  model_agreement: 2/10 models
 - name: csr_accessibility_encoding_convention
   description: Convention for encoding CSR read/write accessibility and minimum privilege
     level in CSR address bits
@@ -213,14 +102,12 @@ parameters:
   constraints: Uses upper 4 bits (csr[11:8]) of 12-bit CSR address; bits csr[11:10]
     indicate read/write (00,01,10) vs read-only (11); bits csr[9:8] encode minimum
     privilege level for access
-  source: privileged_2_1.txt
   keywords:
   - by convention
   - convention
-  confidence:
-    score: 0.1
-    level: low
-    agreement: 1/10 models
+  confidence_score: 0.1
+  confidence_level: low
+  model_agreement: 1/10 models
 - name: csr_accessibility_encoding
   description: 'Encoding of CSR read/write accessibility and the lowest privilege
     level that can access a CSR using bits of the CSR address.
@@ -233,7 +120,6 @@ parameters:
     that may access the CSR.
 
     '
-  source: privileged_2_1.txt
   keywords:
   - read-only
   - upper
@@ -241,65 +127,56 @@ parameters:
   - bits
   - encode
   - by convention
-  confidence:
-    score: 0.1
-    level: low
-    agreement: 1/10 models
+  confidence_score: 0.1
+  confidence_level: low
+  model_agreement: 1/10 models
 - name: csr_read_write_accessibility_encoding
   description: Encoding of CSR read/write accessibility based on privilege level
   type: implementation-defined
   constraints: Uses csr[11:8] (4 bits); csr[11:10] indicates R/W vs R/O, csr[9:8]
     indicates minimum privilege level
-  source: privileged_2_1.txt
   keywords:
   - indicate
   - top two bits
   - according to privilege level
   - next two bits
   - by convention
-  confidence:
-    score: 0.1
-    level: low
-    agreement: 1/10 models
+  confidence_score: 0.1
+  confidence_level: low
+  model_agreement: 1/10 models
 - name: csr_read_only_flag
   description: Whether a CSR is read-only or read/write
   type: implementation-defined
   constraints: Encoded in csr[11:10]; value 11 means read-only, other values (00,
     01, 10) mean read/write
-  source: privileged_2_1.txt
   keywords:
   - 1
   - or 10)
   - read-only (11)
   - read/write (00
-  confidence:
-    score: 0.1
-    level: low
-    agreement: 1/10 models
+  confidence_score: 0.1
+  confidence_level: low
+  model_agreement: 1/10 models
 - name: csr_address_space
   description: Size of the encoding space for Control and Status Registers (CSRs)
   type: standard
   constraints: 12-bit encoding space, up to 4,096 CSRs
-  source: privileged_2_1.txt
   keywords:
   - sets aside
   - standard
-  confidence:
-    score: 0.1
-    level: low
-    agreement: 1/10 models
+  confidence_score: 0.1
+  confidence_level: low
+  model_agreement: 1/10 models
 - name: csr_privilege_levels
   description: Privilege levels that can access CSRs
   type: implementation-specific
   constraints: Lowest privilege level encoded in csr[9:8]
-  source: privileged_2_1.txt
   keywords:
   - encode
   - lowest privilege level
-  confidence:
-    score: 0.1
-    level: low
-    agreement: 1/10 models
+  confidence_score: 0.1
+  confidence_level: low
+  model_agreement: 1/10 models
 - name: csr_address_mapping_convention
   description: Whether the implementation follows the standard convention for CSR
     read/write accessibility and privilege level encoding based on the upper 4 bits
@@ -307,73 +184,61 @@ parameters:
   type: implementation-specific
   constraints: The standard sets aside a 12-bit encoding space (csr[11:0]) for up
     to 4,096 CSRs.
-  source: privileged_2_1.txt
   keywords:
   - according to
   - convention
-  confidence:
-    score: 0.1
-    level: low
-    agreement: 1/10 models
+  confidence_score: 0.1
+  confidence_level: low
+  model_agreement: 1/10 models
 - name: csr_read_write_accessibility
   description: The accessibility of a CSR (read/write vs read-only) as determined
     by bits csr[11:10].
   type: implementation-specific
   constraints: Bits 11:10 indicate read/write if 00, 01, or 10; read-only if 11.
-  source: privileged_2_1.txt
   keywords:
   - indicate
   - convention
-  confidence:
-    score: 0.1
-    level: low
-    agreement: 1/10 models
+  confidence_score: 0.1
+  confidence_level: low
+  model_agreement: 1/10 models
 - name: csr_encoding_space_size
   description: The total number of CSRs that can be encoded.
   type: standard
   constraints: 12-bit encoding space, up to 4,096 CSRs
-  source: privileged_2_1.txt
   keywords:
   - sets aside
-  confidence:
-    score: 0.1
-    level: low
-    agreement: 1/10 models
+  confidence_score: 0.1
+  confidence_level: low
+  model_agreement: 1/10 models
 - name: csr_address_upper_bits_usage
   description: How the upper 4 bits of the CSR address are used to encode read/write
     accessibility and privilege level.
   type: convention
   constraints: csr[11:8] used for accessibility and privilege level
-  source: privileged_2_1.txt
   keywords:
   - By convention
   - used to encode
-  confidence:
-    score: 0.1
-    level: low
-    agreement: 1/10 models
+  confidence_score: 0.1
+  confidence_level: low
+  model_agreement: 1/10 models
 - name: csr_read_write_indicator_bits
   description: The bits indicating whether a CSR is read/write or read-only.
   type: convention
   constraints: csr[11:10] indicate read/write (00, 01, 10) or read-only (11)
-  source: privileged_2_1.txt
   keywords:
   - indicate
-  confidence:
-    score: 0.1
-    level: low
-    agreement: 1/10 models
+  confidence_score: 0.1
+  confidence_level: low
+  model_agreement: 1/10 models
 - name: csr_lowest_privilege_level_bits
   description: The bits encoding the lowest privilege level that can access a CSR.
   type: convention
   constraints: csr[9:8] encode lowest privilege level
-  source: privileged_2_1.txt
   keywords:
   - encode
-  confidence:
-    score: 0.1
-    level: low
-    agreement: 1/10 models
+  confidence_score: 0.1
+  confidence_level: low
+  model_agreement: 1/10 models
 - name: csr_privilege_level_accessibility
   description: 'Controls the read/write (R/W) accessibility of Control and Status
     Registers (CSRs) based on privilege level (encoded in the upper 4 bits of the
@@ -388,7 +253,6 @@ parameters:
     accessibility is conventional (not strictly defined by the ISA).
 
     '
-  source: privileged_2_1.txt
   keywords:
   - privilege level
   - sets aside
@@ -397,10 +261,9 @@ parameters:
   - conventional
   - by convention
   - accessibility
-  confidence:
-    score: 0.1
-    level: low
-    agreement: 1/10 models
+  confidence_score: 0.1
+  confidence_level: low
+  model_agreement: 1/10 models
 - name: csr_privilege_level_encoding_scheme
   description: 'Specifies how privilege levels are encoded in the CSR address space
     (e.g., whether the encoding follows Table 1 or a custom convention).
@@ -412,16 +275,14 @@ parameters:
     level for access. - The top two bits (csr[11:10]) determine read/write vs. read-only.
 
     '
-  source: privileged_2_1.txt
   keywords:
   - by convention
   - encoding scheme
   - privilege level
   - as shown in Table 1
-  confidence:
-    score: 0.1
-    level: low
-    agreement: 1/10 models
+  confidence_score: 0.1
+  confidence_level: low
+  model_agreement: 1/10 models
 - name: csr_read_write_vs_read_only
   description: 'Determines whether a CSR is read/write (R/W) or read-only, encoded
     in the top two bits (csr[11:10]).
@@ -432,7 +293,6 @@ parameters:
     - Could vary if privilege-level encoding is non-standard.
 
     '
-  source: privileged_2_1.txt
   keywords:
   - read-only
   - read/write
@@ -442,7 +302,6 @@ parameters:
   - '11'
   - '10'
   - by convention
-  confidence:
-    score: 0.1
-    level: low
-    agreement: 1/10 models
+  confidence_score: 0.1
+  confidence_level: low
+  model_agreement: 1/10 models

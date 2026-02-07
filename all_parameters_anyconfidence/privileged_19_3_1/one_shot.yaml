@@ -1,0 +1,139 @@
+metadata:
+  source_file: privileged_19_3_1.txt
+  prompt_strategy: one_shot
+  confidence_threshold: '>= 0.1'
+  total_parameters: 8
+  extraction_date: '2026-02-07T23:19:22.867986'
+  models_used:
+  - full_name: deepseek/deepseek-v3.2
+    provider: deepseek
+    model: deepseek-v3.2
+    access_method: OpenRouter API
+  - full_name: nvidia/nemotron-3-nano-30b-a3b
+    provider: nvidia
+    model: nemotron-3-nano-30b-a3b
+    access_method: OpenRouter API
+  - full_name: qwen/qwen3-coder-next
+    provider: qwen
+    model: qwen3-coder-next
+    access_method: OpenRouter API
+  - full_name: openai/gpt-4o-mini
+    provider: openai
+    model: gpt-4o-mini
+    access_method: OpenRouter API
+  - full_name: openai/gpt-5.1-codex-mini
+    provider: openai
+    model: gpt-5.1-codex-mini
+    access_method: OpenRouter API
+  - full_name: anthropic/claude-3-haiku
+    provider: anthropic
+    model: claude-3-haiku
+    access_method: OpenRouter API
+  - full_name: google/gemini-3-flash-preview
+    provider: google
+    model: gemini-3-flash-preview
+    access_method: OpenRouter API
+  - full_name: google/gemini-2.5-flash
+    provider: google
+    model: gemini-2.5-flash
+    access_method: OpenRouter API
+  - full_name: meta-llama/llama-3.1-70b-instruct
+    provider: meta-llama
+    model: llama-3.1-70b-instruct
+    access_method: OpenRouter API
+  - full_name: mistralai/ministral-14b-2512
+    provider: mistralai
+    model: ministral-14b-2512
+    access_method: OpenRouter API
+parameters:
+- name: cache_block_size
+  description: Size of an individual cache block, representing a contiguous, naturally
+    aligned power-of-two (or NAPOT) range of memory locations
+  type: implementation-specific
+  constraints:
+  - Must be a contiguous, naturally aligned power-of-two (Napot) range of memory locations.
+  - Shall be uniform throughout the system (for the initial set of CMO extensions).
+  keywords:
+  - uniform
+  - shall be uniform
+  - implementation-specific
+  - NAPOT
+  - implementation-defined
+  - power-of-two
+  - shall
+  confidence_score: 0.9
+  confidence_level: high
+  model_agreement: 9/10 models
+- name: cache_capacity
+  description: Total capacity of a cache that stores data copies
+  type: implementation-specific
+  constraints: Implementation determines the capacity; no fixed value mandated
+  keywords:
+  - implementation-specific
+  - capacity
+  confidence_score: 0.8
+  confidence_level: high
+  model_agreement: 8/10 models
+- name: cache_organization
+  description: Internal structure or arrangement of a cache (e.g., associativity,
+    ways, sets)
+  type: implementation-specific
+  constraints: Implementation defines the organization; no uniform requirements
+  keywords:
+  - implementation-specific
+  - organization
+  - organization of a cache
+  confidence_score: 0.8
+  confidence_level: high
+  model_agreement: 8/10 models
+- name: cache_block_alignment
+  description: Alignment requirement for cache block memory locations
+  type: implementation-specific
+  constraints: Must be naturally aligned to a power‑of‑two or NAPOT boundary
+  keywords:
+  - power-of-two
+  - NAPOT
+  - alignment
+  confidence_score: 0.1
+  confidence_level: low
+  model_agreement: 1/10 models
+- name: cache_capacity_and_organization
+  description: Total capacity and structural organization of a cache (e.g., levels,
+    associativity, number of sets)
+  type: implementation-specific
+  constraints: None explicitly stated beyond being implementation-specific
+  keywords:
+  - implementation-specific
+  confidence_score: 0.1
+  confidence_level: low
+  model_agreement: 1/10 models
+- name: uniform_cache_block_size
+  description: Indicates that the size of a cache block shall be uniform throughout
+    the system
+  type: configurable
+  constraints: Must be uniform across the system
+  keywords:
+  - shall
+  confidence_score: 0.1
+  confidence_level: low
+  model_agreement: 1/10 models
+- name: cache_block_uniformity
+  description: Whether cache block size is uniform throughout the system
+  type: mandatory
+  constraints: Cache block size must be uniform
+  keywords:
+  - shall
+  confidence_score: 0.1
+  confidence_level: low
+  model_agreement: 1/10 models
+- name: discovery_mechanism
+  description: The method provided by the execution environment for software to identify
+    cache characteristics
+  type: implementation-specific
+  constraints: Must provide a means to discover information about caches and cache
+    blocks
+  keywords:
+  - provides
+  confidence_score: 0.1
+  confidence_level: low
+  model_agreement: 1/10 models

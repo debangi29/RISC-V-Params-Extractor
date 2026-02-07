@@ -1,0 +1,184 @@
+metadata:
+  source_file: privileged_2_1.txt
+  prompt_strategy: chain_of_thought
+  confidence_threshold: '>= 0.1'
+  total_parameters: 11
+  extraction_date: '2026-02-07T23:24:15.146988'
+  models_used:
+  - full_name: deepseek/deepseek-v3.2
+    provider: deepseek
+    model: deepseek-v3.2
+    access_method: OpenRouter API
+  - full_name: nvidia/nemotron-3-nano-30b-a3b
+    provider: nvidia
+    model: nemotron-3-nano-30b-a3b
+    access_method: OpenRouter API
+  - full_name: qwen/qwen3-coder-next
+    provider: qwen
+    model: qwen3-coder-next
+    access_method: OpenRouter API
+  - full_name: openai/gpt-4o-mini
+    provider: openai
+    model: gpt-4o-mini
+    access_method: OpenRouter API
+  - full_name: openai/gpt-5.1-codex-mini
+    provider: openai
+    model: gpt-5.1-codex-mini
+    access_method: OpenRouter API
+  - full_name: anthropic/claude-3-haiku
+    provider: anthropic
+    model: claude-3-haiku
+    access_method: OpenRouter API
+  - full_name: google/gemini-3-flash-preview
+    provider: google
+    model: gemini-3-flash-preview
+    access_method: OpenRouter API
+  - full_name: google/gemini-2.5-flash
+    provider: google
+    model: gemini-2.5-flash
+    access_method: OpenRouter API
+  - full_name: meta-llama/llama-3.1-70b-instruct
+    provider: meta-llama
+    model: llama-3.1-70b-instruct
+    access_method: OpenRouter API
+  - full_name: mistralai/ministral-14b-2512
+    provider: mistralai
+    model: ministral-14b-2512
+    access_method: OpenRouter API
+parameters:
+- name: csr_accessibility
+  description: Encoding of read and write accessibility of CSRs based on privilege
+    level
+  type: implementation-specific
+  constraints:
+  - 12-bit encoding space for up to 4,096 CSRs
+  - Top 4 bits (csr[11:8]) encode read/write accessibility and lowest privilege level
+  - Top 2 bits (csr[11:10]) indicate read/write (00, 01, 10) or read-only (11) access
+  - Next 2 bits (csr[9:8]) encode the lowest privilege level that can access the CSR
+  keywords:
+  - privilege level
+  - according to
+  - encode
+  - conventional
+  - by convention
+  - accessibility
+  confidence_score: 0.2
+  confidence_level: low
+  model_agreement: 2/10 models
+- name: csr_access_mapping_convention
+  description: Whether to follow the conventional encoding of CSR address bits csr[11:8]
+    for read/write accessibility and minimal privilege level
+  type: optional
+  constraints: If followed, csr[11:10] = 00, 01, or 10 indicates read/write; =11 indicates
+    read-only; csr[9:8] encodes lowest privilege level allowed to access CSR.
+  keywords:
+  - By convention
+  confidence_score: 0.1
+  confidence_level: low
+  model_agreement: 1/10 models
+- name: csr_accessibility_encoding
+  description: Controls whether and how CSR read/write accessibility and minimum privilege
+    level are encoded in bits [11:8] of the CSR address.
+  type: optional
+  constraints: The 12-bit CSR address space (csr[11:0]) is fixed by the ISA, but the
+    encoding of accessibility in bits [11:8] is only conventional and not mandated.
+    Implementations may use alternative encodings or omit this convention.
+  keywords:
+  - by convention
+  - according to
+  - as shown in Table 1
+  confidence_score: 0.1
+  confidence_level: low
+  model_agreement: 1/10 models
+- name: csr_address_encoding
+  description: Defines the encoding scheme for CSR addresses, specifically the bits
+    used for accessibility.
+  type: implementation-specific
+  constraints: A 12-bit encoding space is reserved for CSRs, with specific bits designated
+    for accessibility.
+  keywords:
+  - csr
+  - bits
+  - address
+  - encoding
+  confidence_score: 0.1
+  confidence_level: low
+  model_agreement: 1/10 models
+- name: implemented_csr_count
+  description: The actual number of Control and Status Registers implemented within
+    the 12-bit encoding space.
+  type: implementation-specific
+  constraints: Maximum of 4,096 registers.
+  keywords:
+  - sets aside
+  - up to
+  confidence_score: 0.1
+  confidence_level: low
+  model_agreement: 1/10 models
+- name: csr_address_accessibility_convention
+  description: Adherence to the standard mapping where csr[11:10] determines R/W permissions
+    and csr[9:8] determines the minimum privilege level.
+  type: optional
+  constraints: Top two bits (11) must indicate read-only to follow convention.
+  keywords:
+  - By convention
+  - Conventional
+  confidence_score: 0.1
+  confidence_level: low
+  model_agreement: 1/10 models
+- name: csr_minimum_privilege_level_mapping
+  description: The enforcement of access control based on the encoding of bits csr[9:8]
+    relative to the current execution privilege mode.
+  type: implementation-specific
+  constraints: Must encode the lowest privilege level that can access the CSR according
+    to Table 1.
+  keywords:
+  - encode
+  - convention
+  confidence_score: 0.1
+  confidence_level: low
+  model_agreement: 1/10 models
+- name: csr_address_mapping_convention
+  description: Describes the conventional use of the upper 4 bits of the CSR address
+    for encoding read/write accessibility and privilege level.
+  type: optional
+  constraints:
+  - Upper 4 bits (csr[11:8]) are used for encoding.
+  - Top two bits (csr[11:10]) indicate read/write (00, 01, 10) or read-only (11).
+  - Next two bits (csr[9:8]) encode the lowest privilege level for access.
+  keywords:
+  - by convention
+  - convention
+  confidence_score: 0.1
+  confidence_level: low
+  model_agreement: 1/10 models
+- name: csr_address_mapping
+  description: The mapping of CSR addresses to read and write accessibility
+  type: implementation-specific
+  constraints: The upper 4 bits of the CSR address (csr[11:8]) are used to encode
+    the read and write accessibility
+  keywords:
+  - convention
+  confidence_score: 0.1
+  confidence_level: low
+  model_agreement: 1/10 models
+- name: csr_read_write_accessibility
+  description: The encoding of read and write accessibility of CSRs
+  type: implementation-specific
+  constraints: The top two bits (csr[11:10]) indicate whether the register is read/write
+    (00,01, or 10) or read-only (11)
+  keywords:
+  - convention
+  confidence_score: 0.1
+  confidence_level: low
+  model_agreement: 1/10 models
+- name: csr_privilege_level_accessibility
+  description: The encoding of the lowest privilege level that can access the CSR
+  type: implementation-specific
+  constraints: The next two bits (csr[9:8]) encode the lowest privilege level that
+    can access the CSR
+  keywords:
+  - convention
+  confidence_score: 0.1
+  confidence_level: low
+  model_agreement: 1/10 models

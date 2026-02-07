@@ -1,0 +1,117 @@
+metadata:
+  source_file: privileged_19_3_1.txt
+  prompt_strategy: chain_of_thought
+  confidence_threshold: '>= 0.1'
+  total_parameters: 5
+  extraction_date: '2026-02-07T23:24:15.146988'
+  models_used:
+  - full_name: deepseek/deepseek-v3.2
+    provider: deepseek
+    model: deepseek-v3.2
+    access_method: OpenRouter API
+  - full_name: nvidia/nemotron-3-nano-30b-a3b
+    provider: nvidia
+    model: nemotron-3-nano-30b-a3b
+    access_method: OpenRouter API
+  - full_name: qwen/qwen3-coder-next
+    provider: qwen
+    model: qwen3-coder-next
+    access_method: OpenRouter API
+  - full_name: openai/gpt-4o-mini
+    provider: openai
+    model: gpt-4o-mini
+    access_method: OpenRouter API
+  - full_name: openai/gpt-5.1-codex-mini
+    provider: openai
+    model: gpt-5.1-codex-mini
+    access_method: OpenRouter API
+  - full_name: anthropic/claude-3-haiku
+    provider: anthropic
+    model: claude-3-haiku
+    access_method: OpenRouter API
+  - full_name: google/gemini-3-flash-preview
+    provider: google
+    model: gemini-3-flash-preview
+    access_method: OpenRouter API
+  - full_name: google/gemini-2.5-flash
+    provider: google
+    model: gemini-2.5-flash
+    access_method: OpenRouter API
+  - full_name: meta-llama/llama-3.1-70b-instruct
+    provider: meta-llama
+    model: llama-3.1-70b-instruct
+    access_method: OpenRouter API
+  - full_name: mistralai/ministral-14b-2512
+    provider: mistralai
+    model: ministral-14b-2512
+    access_method: OpenRouter API
+parameters:
+- name: cache_block_size
+  description: Size in bytes of a cache block (cache line), which is the smallest
+    unit of data transferred between cache and memory.
+  type: implementation-specific
+  constraints:
+  - Cache blocks represent a contiguous, naturally aligned power-of-two (or NAPOT)
+    range of memory locations
+  - The size of a cache block shall be uniform throughout the system
+  keywords:
+  - uniform
+  - size of a cache block
+  - implementation-specific
+  - shall, implementation-specific
+  - cache block
+  - size
+  - NAPOT
+  - shall be
+  - shall be uniform
+  - shall
+  confidence_score: 1.0
+  confidence_level: high
+  model_agreement: 10/10 models
+- name: cache_capacity
+  description: The total amount of data (in bytes) that a cache can store.
+  type: implementation-specific
+  constraints: None explicitly mentioned (only that it is implementation-specific).
+  keywords:
+  - implementation-specific
+  - capacity of a cache
+  - capacity
+  - cache
+  confidence_score: 0.7
+  confidence_level: high
+  model_agreement: 7/10 models
+- name: cache_organization
+  description: The structural layout of a cache (e.g., number of sets, associativity,
+    ways, replacement policy).
+  type: implementation-specific
+  constraints: None explicitly mentioned (only that it is implementation-specific).
+  keywords:
+  - implementation-specific
+  - organization
+  - cache
+  - organization of a cache
+  confidence_score: 0.7
+  confidence_level: high
+  model_agreement: 7/10 models
+- name: cache_capacity_and_organization
+  description: Implementation-defined capacity and internal organization of each cache,
+    including how cache blocks are arranged and managed.
+  type: implementation-specific
+  constraints: None beyond being discoverable via the execution environment.
+  keywords:
+  - implementation-specific
+  - capacity
+  - organization
+  - discover
+  confidence_score: 0.2
+  confidence_level: low
+  model_agreement: 2/10 models
+- name: cache_capacity_organization
+  description: The capacity and organization of a cache.
+  type: implementation-specific
+  constraints: None
+  keywords:
+  - implementation-specific
+  confidence_score: 0.1
+  confidence_level: low
+  model_agreement: 1/10 models

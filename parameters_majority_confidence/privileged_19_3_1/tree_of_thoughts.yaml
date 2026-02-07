@@ -1,0 +1,103 @@
+metadata:
+  source_file: privileged_19_3_1.txt
+  prompt_strategy: tree_of_thoughts
+  confidence_threshold: '>= 0.5'
+  total_parameters: 3
+  extraction_date: '2026-02-07T23:27:40.975739'
+  models_used:
+  - full_name: deepseek/deepseek-v3.2
+    provider: deepseek
+    model: deepseek-v3.2
+    access_method: OpenRouter API
+  - full_name: nvidia/nemotron-3-nano-30b-a3b
+    provider: nvidia
+    model: nemotron-3-nano-30b-a3b
+    access_method: OpenRouter API
+  - full_name: qwen/qwen3-coder-next
+    provider: qwen
+    model: qwen3-coder-next
+    access_method: OpenRouter API
+  - full_name: openai/gpt-4o-mini
+    provider: openai
+    model: gpt-4o-mini
+    access_method: OpenRouter API
+  - full_name: openai/gpt-5.1-codex-mini
+    provider: openai
+    model: gpt-5.1-codex-mini
+    access_method: OpenRouter API
+  - full_name: anthropic/claude-3-haiku
+    provider: anthropic
+    model: claude-3-haiku
+    access_method: OpenRouter API
+  - full_name: google/gemini-3-flash-preview
+    provider: google
+    model: gemini-3-flash-preview
+    access_method: OpenRouter API
+  - full_name: google/gemini-2.5-flash
+    provider: google
+    model: gemini-2.5-flash
+    access_method: OpenRouter API
+  - full_name: meta-llama/llama-3.1-70b-instruct
+    provider: meta-llama
+    model: llama-3.1-70b-instruct
+    access_method: OpenRouter API
+  - full_name: mistralai/ministral-14b-2512
+    provider: mistralai
+    model: ministral-14b-2512
+    access_method: OpenRouter API
+parameters:
+- name: cache_capacity
+  description: 'The total capacity of a cache, derived from the number of blocks and
+    the block size.
+
+    '
+  type: implementation-specific
+  constraints: Must be discoverable by software via the execution environment; no
+    upper/lower bound specified in this excerpt
+  keywords:
+  - implementation-specific
+  - capacity
+  - cache
+  confidence_score: 0.9
+  confidence_level: high
+  model_agreement: 9/10 models
+- name: cache_organization
+  description: 'The structural organization of a cache (e.g., direct‑mapped, set‑associative)
+    that determines how blocks are mapped to sets or ways.
+
+    '
+  type: implementation-specific
+  constraints: Not specified; arrangement is left to the implementation and must be
+    discoverable by software via the execution environment.
+  keywords:
+  - implementation-specific
+  - organization
+  - cache
+  confidence_score: 0.9
+  confidence_level: high
+  model_agreement: 9/10 models
+- name: cache_block_size
+  description: 'The size of each cache block, which represents a contiguous, naturally
+    aligned power‑of‑two (or NAPOT) range of memory locations.
+
+    '
+  type: implementation-specific
+  constraints:
+  - Must be a contiguous, naturally aligned power-of-two (NAPOT) range of memory locations.
+  - For systems supporting the initial set of CMO extensions, the size must be uniform
+    throughout the system.
+  keywords:
+  - implementation-specific, shall be uniform
+  - uniform
+  - shall be uniform
+  - cache block
+  - implementation-specific
+  - implementation-specific, uniform, power-of-two, NAPOT
+  - contiguous
+  - size
+  - NAPOT
+  - power-of-two
+  - shall
+  confidence_score: 0.9
+  confidence_level: high
+  model_agreement: 9/10 models

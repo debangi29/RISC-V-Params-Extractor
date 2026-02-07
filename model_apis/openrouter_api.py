@@ -13,8 +13,6 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-api_tracker = 0
-
 class OpenRouterAPI:
     """
     Wrapper for OpenRouter API that provides access to multiple LLM providers.
@@ -23,22 +21,32 @@ class OpenRouterAPI:
     
     # Available models through OpenRouter (verified 2026-02-07)
     MODELS = [
+        #Deepseek models
+        "deepseek/deepseek-v3.2",
+        # "deepseek/deepseek-r1-0528:free",
         # Nvidia models
-        "nvidia/nemotron-3-nano-30b-a3b:free",
+        # "nvidia/nemotron-3-nano-30b-a3b:free",
+        "nvidia/nemotron-3-nano-30b-a3b",
         # QWEN models
         "qwen/qwen3-coder-next",
+        # "qwen/qwen3-next-80b-a3b-instruct:free",
         # Moonshot kimi k2
-        "moonshotai/kimi-k2.5",
+        #"moonshotai/kimi-k2.5",
         # OpenAI models
         "openai/gpt-4o-mini",
-        "openai/gpt-3.5-turbo",
+        # "openai/gpt-3.5-turbo",
+        "openai/gpt-5.1-codex-mini",
         # Anthropic models
         "anthropic/claude-3-haiku",
         # Google models
         "google/gemini-3-flash-preview",
         "google/gemini-2.5-flash",
+        # "google/gemma-3-27b-it:free",
+        # "google/gemma-3-12b-it:free",
+        # "google/gemini-2.0-flash-lite-001",
         # Meta models
         "meta-llama/llama-3.1-70b-instruct",
+        # "meta-llama/llama-3.3-70b-instruct:free",
         # Mistral models
         "mistralai/ministral-14b-2512"
     ]
@@ -60,6 +68,9 @@ class OpenRouterAPI:
             raise ValueError("No OpenRouter API keys found. Set OPENROUTER_API_KEY or OPENROUTER_API_KEY_1, OPENROUTER_API_KEY_2, etc. in .env")
         
         print(f"  Loaded {len(self.api_keys)} API key(s) for load distribution")
+        
+        # Initialize cyclic API key tracker
+        self._api_key_index = 0
         
         self.base_url = "https://openrouter.ai/api/v1/chat/completions"
         self.request_delay = float(os.getenv("REQUEST_DELAY_SECONDS", "0.5"))
@@ -85,12 +96,15 @@ class OpenRouterAPI:
         
         return keys
     
-    def _get_random_api_key(self) -> str:
-        """Randomly select an API key from the pool."""
-        # return random.choice(self.api_keys)
-        global api_tracker
-        api_tracker += 1
-        return self.api_keys[api_tracker%5]
+    def _get_cyclic_api_key(self) -> str:
+        """Cyclically select an API key from the pool to distribute load evenly."""
+        # Get the current API key
+        api_key = self.api_keys[self._api_key_index]
+        
+        # Move to next key for next call (wraps around using modulo)
+        self._api_key_index = (self._api_key_index + 1) % len(self.api_keys)
+        
+        return api_key
     
     def _get_headers(self, api_key: str) -> Dict[str, str]:
         """Generate headers with the specified API key."""
@@ -124,7 +138,7 @@ class OpenRouterAPI:
             Dict containing response text and metadata
         """
         # Randomly select an API key
-        api_key = self._get_random_api_key()
+        api_key = self._get_cyclic_api_key()
         headers = self._get_headers(api_key)
         
         payload = {
