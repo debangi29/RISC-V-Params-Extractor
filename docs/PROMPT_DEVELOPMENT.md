@@ -264,8 +264,8 @@ Format as YAML with: name, description, type, constraints
 ```
 
 **Results**:
-- 25% hallucination rate ✓
-- Better format consistency ✓
+- 25% hallucination rate [OK]
+- Better format consistency [OK]
 - Still missed 15% of parameters
 
 ### Iteration 3: Added Examples (Few-Shot)
@@ -281,9 +281,9 @@ Now extract from: [text]
 ```
 
 **Results**:
-- 12% hallucination rate ✓✓
-- Excellent format consistency ✓✓
-- Missed only 5% of parameters ✓
+- 12% hallucination rate [Good]
+- Excellent format consistency [Good]
+- Missed only 5% of parameters [OK]
 
 ### Iteration 4: Added Reasoning (CoT)
 
@@ -301,9 +301,9 @@ Think step-by-step:
 ```
 
 **Results**:
-- 8% hallucination rate ✓✓✓
-- Excellent accuracy ✓✓✓
-- Found 98% of parameters ✓✓
+- 8% hallucination rate [Excellent]
+- Excellent accuracy [Excellent]
+- Found 98% of parameters [Good]
 
 ### Iteration 5: Multi-Path Analysis (ToT)
 
@@ -321,8 +321,8 @@ Synthesize findings...
 
 **Results**:
 - 10% hallucination rate (slightly higher due to over-extraction)
-- Found 99% of parameters ✓✓✓
-- Best for comprehensive extraction ✓✓
+- Found 99% of parameters [Excellent]
+- Best for comprehensive extraction [Good]
 
 ## Recommended Strategy by Use Case
 

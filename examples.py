@@ -102,7 +102,7 @@ def example_custom_models():
     
     print("\nExtraction complete!")
     for model, result in results.items():
-        status = "✓" if result.get("success") else "✗"
+        status = "[OK]" if result.get("success") else "[FAIL]"
         print(f"  {status} {model}")
 
 
@@ -136,7 +136,7 @@ def example_compare_strategies():
 
 
 if __name__ == "__main__":
-    print("\n🚀 RISC-V Parameter Extractor - Examples\n")
+    print("\nRISC-V Parameter Extractor - Examples\n")
     
     # Run examples
     example_single_snippet()

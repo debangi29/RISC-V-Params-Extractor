@@ -164,21 +164,21 @@ This document provides detailed information about the 10 LLM models used in the 
 
 | Model | Provider | Context | Cost | Speed | Reasoning | Best For |
 |-------|----------|---------|------|-------|-----------|----------|
-| GPT-4o | OpenAI | 128K | $$$ | ⚡⚡ | ⭐⭐⭐⭐⭐ | Complex extraction |
-| GPT-4o-mini | OpenAI | 128K | $ | ⚡⚡⚡⚡ | ⭐⭐⭐⭐ | High-volume |
-| GPT-3.5-turbo | OpenAI | 16K | $ | ⚡⚡⚡⚡⚡ | ⭐⭐⭐ | Baseline |
-| Claude 3.5 Sonnet | Anthropic | 200K | $$ | ⚡⚡⚡ | ⭐⭐⭐⭐⭐ | Technical specs |
-| Claude 3 Opus | Anthropic | 200K | $$$$ | ⚡⚡ | ⭐⭐⭐⭐⭐ | Difficult cases |
-| Claude 3 Haiku | Anthropic | 200K | $ | ⚡⚡⚡⚡⚡ | ⭐⭐⭐ | Quick tasks |
-| Gemini 1.5 Pro | Google | 2M | $$ | ⚡⚡⚡ | ⭐⭐⭐⭐ | Large docs |
-| Gemini 1.5 Flash | Google | 1M | $ | ⚡⚡⚡⚡ | ⭐⭐⭐⭐ | Fast + large |
-| Llama 3.1 70B | Meta/Groq | 128K | $ | ⚡⚡⚡⚡⚡ | ⭐⭐⭐⭐ | Open source |
-| Command R+ | Cohere | 128K | $$ | ⚡⚡⚡ | ⭐⭐⭐⭐ | RAG tasks |
+| GPT-4o | OpenAI | 128K | $$$ | ** | ***** | Complex extraction |
+| GPT-4o-mini | OpenAI | 128K | $ | **** | **** | High-volume |
+| GPT-3.5-turbo | OpenAI | 16K | $ | ***** | *** | Baseline |
+| Claude 3.5 Sonnet | Anthropic | 200K | $$ | *** | ***** | Technical specs |
+| Claude 3 Opus | Anthropic | 200K | $$$$ | ** | ***** | Difficult cases |
+| Claude 3 Haiku | Anthropic | 200K | $ | ***** | *** | Quick tasks |
+| Gemini 1.5 Pro | Google | 2M | $$ | *** | **** | Large docs |
+| Gemini 1.5 Flash | Google | 1M | $ | **** | **** | Fast + large |
+| Llama 3.1 70B | Meta/Groq | 128K | $ | ***** | **** | Open source |
+| Command R+ | Cohere | 128K | $$ | *** | **** | RAG tasks |
 
 **Legend**:
 - Cost: $ (cheap) to $$$$ (expensive)
-- Speed: ⚡ (slow) to ⚡⚡⚡⚡⚡ (very fast)
-- Reasoning: ⭐ (basic) to ⭐⭐⭐⭐⭐ (excellent)
+- Speed: * (slow) to ***** (very fast)
+- Reasoning: * (basic) to ***** (excellent)
 
 ## Model Selection Strategy
 

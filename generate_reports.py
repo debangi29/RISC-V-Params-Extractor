@@ -72,7 +72,7 @@ def generate_reports_from_progress(progress_file):
                 result = model_data["detailed_results"][snippet_idx - 1]
                 model_short = model.split('/')[-1]
                 
-                f.write(f"📊 {model}\n")
+                f.write(f"[STATS] {model}\n")
                 if result["success"]:
                     f.write(f"   Extracted {len(result['extracted'])} parameters:\n")
                     if result['extracted']:
@@ -85,12 +85,12 @@ def generate_reports_from_progress(progress_file):
                     f.write(f"   Accuracy: Precision={acc['precision']}%, Recall={acc['recall']}%, F1={acc['f1_score']}%\n")
                     f.write(f"   Matches: {acc['exact_matches']} exact, {acc['partial_matches']} partial\n")
                 else:
-                    f.write(f"   ❌ FAILED: {result.get('error', 'Unknown error')}\n")
+                    f.write(f"   [FAILED] FAILED: {result.get('error', 'Unknown error')}\n")
                 f.write("\n")
             
             f.write("\n\n")
     
-    print(f"✅ Detailed extractions saved to: {txt_filename}")
+    print(f"[OK] Detailed extractions saved to: {txt_filename}")
     
     # 2. Generate CSV report
     csv_filename = f"outputs/parameter_accuracy_test_{timestamp}.csv"
@@ -128,7 +128,7 @@ def generate_reports_from_progress(progress_file):
                     result["success"]
                 ])
     
-    print(f"✅ Detailed CSV saved to: {csv_filename}")
+    print(f"[OK] Detailed CSV saved to: {csv_filename}")
     
     # 3. Generate summary report
     print(f"\n{'=' * 80}")
@@ -138,7 +138,7 @@ def generate_reports_from_progress(progress_file):
     # Sort models by F1 score
     sorted_models = sorted(all_results.items(), key=lambda x: x[1]["avg_f1_score"], reverse=True)
     
-    print(f"\n📊 Model Rankings (by F1 Score):")
+    print(f"\n[STATS] Model Rankings (by F1 Score):")
     print("-" * 80)
     print(f"{'Rank':<6} {'Model':<45} {'F1':<8} {'Precision':<10} {'Recall':<8}")
     print("-" * 80)

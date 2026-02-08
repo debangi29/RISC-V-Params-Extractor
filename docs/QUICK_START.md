@@ -180,4 +180,4 @@ For 100 snippets:
 4. **Compare Strategies**: Different strategies find different parameters
 5. **Validate Manually**: Always review low-confidence items
 
-Enjoy extracting RISC-V parameters! 🚀
+Enjoy extracting RISC-V parameters!

@@ -206,7 +206,7 @@ def extract_parameters_from_response(response_text: str) -> List[str]:
         # Last resort: return empty list
         return []
     except Exception as e:
-        print(f"    ⚠️  Parse error: {e}")
+        print(f"    [WARN]  Parse error: {e}")
         return []
 
 
@@ -236,7 +236,7 @@ def test_model_on_snippet(api: OpenRouterAPI, model: str, snippet_data: Dict, sn
             # Calculate accuracy
             accuracy = calculate_accuracy(extracted_params, ground_truth)
             
-            print(f"✅ F1: {accuracy['f1_score']}%")
+            print(f"[OK] F1: {accuracy['f1_score']}%")
             
             return {
                 "success": True,
@@ -246,7 +246,7 @@ def test_model_on_snippet(api: OpenRouterAPI, model: str, snippet_data: Dict, sn
                 "response_text": response.get("text", "")
             }
         else:
-            print(f"❌ API Error: {response.get('error', 'Unknown')}")
+            print(f"[ERROR] API Error: {response.get('error', 'Unknown')}")
             return {
                 "success": False,
                 "error": response.get("error", "Unknown error"),
@@ -256,7 +256,7 @@ def test_model_on_snippet(api: OpenRouterAPI, model: str, snippet_data: Dict, sn
             }
     
     except Exception as e:
-        print(f"❌ Exception: {str(e)}")
+        print(f"[ERROR] Exception: {str(e)}")
         return {
             "success": False,
             "error": str(e),
@@ -280,9 +280,9 @@ def test_all_models():
     # Initialize API
     try:
         api = OpenRouterAPI()
-        print(f"✅ OpenRouter API initialized with {len(api.api_keys)} API key(s)")
+        print(f"[OK] OpenRouter API initialized with {len(api.api_keys)} API key(s)")
     except Exception as e:
-        print(f"❌ Failed to initialize API: {e}")
+        print(f"[ERROR] Failed to initialize API: {e}")
         return
     
     # Results storage
@@ -335,7 +335,7 @@ def test_all_models():
         os.makedirs("outputs", exist_ok=True)
         with open(progress_file, 'w', encoding='utf-8') as f:
             json.dump(all_results, f, indent=2)
-        print(f"  💾 Progress saved ({len(all_results)}/{len(TEST_MODELS)} models complete)")
+        print(f"  [SAVED] Progress saved ({len(all_results)}/{len(TEST_MODELS)} models complete)")
     
     # Generate summary report
     print(f"\n{'=' * 80}")
@@ -345,7 +345,7 @@ def test_all_models():
     # Sort models by F1 score
     sorted_models = sorted(all_results.items(), key=lambda x: x[1]["avg_f1_score"], reverse=True)
     
-    print(f"\n📊 Model Rankings (by F1 Score):")
+    print(f"\n[STATS] Model Rankings (by F1 Score):")
     print("-" * 80)
     print(f"{'Rank':<6} {'Model':<45} {'F1':<8} {'Precision':<10} {'Recall':<8}")
     print("-" * 80)
@@ -386,7 +386,7 @@ def test_all_models():
                     result = all_results[model]["detailed_results"][snippet_idx - 1]
                     model_short = model.split('/')[-1]
                     
-                    f.write(f"📊 {model}\n")
+                    f.write(f"[STATS] {model}\n")
                     if result["success"]:
                         f.write(f"   Extracted {len(result['extracted'])} parameters:\n")
                         if result['extracted']:
@@ -399,12 +399,12 @@ def test_all_models():
                         f.write(f"   Accuracy: Precision={acc['precision']}%, Recall={acc['recall']}%, F1={acc['f1_score']}%\n")
                         f.write(f"   Matches: {acc['exact_matches']} exact, {acc['partial_matches']} partial\n")
                     else:
-                        f.write(f"   ❌ FAILED: {result.get('error', 'Unknown error')}\n")
+                        f.write(f"   [FAILED] FAILED: {result.get('error', 'Unknown error')}\n")
                     f.write("\n")
             
             f.write("\n\n")
     
-    print(f"\n✅ Detailed extractions saved to: {txt_filename}")
+    print(f"\n[OK] Detailed extractions saved to: {txt_filename}")
     
     # Save detailed results to CSV
     csv_filename = f"outputs/parameter_accuracy_test_{timestamp}.csv"
@@ -443,14 +443,14 @@ def test_all_models():
                     result["success"]
                 ])
     
-    print(f"✅ Detailed CSV saved to: {csv_filename}")
+    print(f"[OK] Detailed CSV saved to: {csv_filename}")
     
     # Save summary to JSON
     json_filename = f"outputs/parameter_accuracy_summary_{timestamp}.json"
     with open(json_filename, 'w', encoding='utf-8') as f:
         json.dump(all_results, f, indent=2)
     
-    print(f"✅ Summary JSON saved to: {json_filename}")
+    print(f"[OK] Summary JSON saved to: {json_filename}")
     
     # Overall statistics
     print(f"\n{'=' * 80}")

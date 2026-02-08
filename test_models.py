@@ -38,7 +38,7 @@ Output as YAML:
         )
         
         if response.get("success"):
-            print("✅ SUCCESS")
+            print("[OK] SUCCESS")
             print(f"Response length: {len(response.get('text', ''))} characters")
             print(f"\nFirst 200 chars of response:")
             print("-" * 60)
@@ -52,12 +52,12 @@ Output as YAML:
             
             return True
         else:
-            print("❌ FAILED")
+            print("[FAILED] FAILED")
             print(f"Error: {response.get('error', 'Unknown error')}")
             return False
             
     except Exception as e:
-        print("❌ EXCEPTION")
+        print("[ERROR] EXCEPTION")
         print(f"Error: {str(e)}")
         return False
 
@@ -71,23 +71,23 @@ def main():
     # Check API key
     api_key = os.getenv("OPENROUTER_API_KEY")
     if not api_key:
-        print("\n❌ ERROR: OPENROUTER_API_KEY not found in .env file")
+        print("\n[ERROR] ERROR: OPENROUTER_API_KEY not found in .env file")
         print("Please add your API key to the .env file")
         sys.exit(1)
     
-    print(f"\n✅ API Key found: {api_key[:10]}...{api_key[-4:]}")
+    print(f"\n[OK] API Key found: {api_key[:10]}...{api_key[-4:]}")
     
     # Initialize API
     try:
         api = OpenRouterAPI()
-        print("✅ OpenRouter API initialized")
+        print("[OK] OpenRouter API initialized")
     except Exception as e:
-        print(f"❌ Failed to initialize API: {e}")
+        print(f"[ERROR] Failed to initialize API: {e}")
         sys.exit(1)
     
     # Get all models
     models = api.get_available_models()
-    print(f"\n📋 Testing {len(models)} models:")
+    print(f"\n[LIST] Testing {len(models)} models:")
     for i, model in enumerate(models, 1):
         print(f"  {i}. {model}")
     
@@ -106,8 +106,8 @@ def main():
     successful = sum(1 for v in results.values() if v)
     failed = len(results) - successful
     
-    print(f"\n✅ Successful: {successful}/{len(results)}")
-    print(f"❌ Failed: {failed}/{len(results)}")
+    print(f"\n[OK] Successful: {successful}/{len(results)}")
+    print(f"[FAILED] Failed: {failed}/{len(results)}")
     
     print("\nDetailed Results:")
     print("-" * 60)
@@ -123,7 +123,7 @@ def main():
     for provider, model_results in sorted(providers.items()):
         print(f"\n{provider.upper()}:")
         for model, success in model_results:
-            status = "✅" if success else "❌"
+            status = "[OK]" if success else "[FAILED]"
             print(f"  {status} {model}")
     
     # Specific Anthropic check
@@ -135,27 +135,27 @@ def main():
     anthropic_success = [results[m] for m in anthropic_models]
     
     if all(anthropic_success):
-        print("✅ All Anthropic models working correctly!")
+        print("[OK] All Anthropic models working correctly!")
     elif any(anthropic_success):
-        print("⚠️  Some Anthropic models working, some failing")
+        print("[WARN]  Some Anthropic models working, some failing")
     else:
-        print("❌ All Anthropic models failed")
+        print("[FAILED] All Anthropic models failed")
     
     for model in anthropic_models:
-        status = "✅" if results[model] else "❌"
+        status = "[OK]" if results[model] else "[FAILED]"
         print(f"  {status} {model}")
     
     print("\n" + "="*60)
     
     if failed > 0:
-        print("\n⚠️  Some models failed. This could be due to:")
+        print("\n[WARN]  Some models failed. This could be due to:")
         print("  - Rate limiting")
         print("  - API key permissions")
         print("  - Temporary service issues")
         print("  - Network connectivity")
         print("\nTry running the test again in a few minutes.")
     else:
-        print("\n🎉 All models are working correctly!")
+        print("\n[SUCCESS] All models are working correctly!")
 
 
 if __name__ == "__main__":

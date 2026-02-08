@@ -14,7 +14,7 @@ def test_model(model_name):
     api_key = os.getenv("OPENROUTER_API_KEY")
     
     if not api_key:
-        print("❌ No API key found")
+        print("[ERROR] No API key found")
         return False
     
     url = "https://openrouter.ai/api/v1/chat/completions"
@@ -40,11 +40,11 @@ def test_model(model_name):
         data = response.json()
         text = data["choices"][0]["message"]["content"]
         
-        print(f"✅ OK ({len(text)} chars)")
+        print(f"[OK] OK ({len(text)} chars)")
         return True
         
     except Exception as e:
-        print(f"❌ FAILED: {str(e)[:50]}")
+        print(f"[FAILED] FAILED: {str(e)[:50]}")
         return False
 
 
@@ -67,13 +67,13 @@ def main():
         "meta-llama/llama-3.1-70b-instruct"
     ]
     
-    print("\n🔍 Testing ANTHROPIC models:")
+    print("\n[TEST] Testing ANTHROPIC models:")
     print("-" * 60)
     anthropic_results = {}
     for model in anthropic_models:
         anthropic_results[model] = test_model(model)
     
-    print("\n🔍 Testing OTHER models:")
+    print("\n[TEST] Testing OTHER models:")
     print("-" * 60)
     other_results = {}
     for model in other_models:
@@ -90,9 +90,9 @@ def main():
     print(f"Others: {other_success}/{len(other_models)} working")
     
     if anthropic_success == len(anthropic_models):
-        print("\n✅ All Anthropic models are WORKING!")
+        print("\n[OK] All Anthropic models are WORKING!")
     else:
-        print("\n❌ Some Anthropic models failed")
+        print("\n[FAILED] Some Anthropic models failed")
     
     print("\n" + "="*60)
 
