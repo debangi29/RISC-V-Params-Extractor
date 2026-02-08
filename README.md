@@ -37,7 +37,7 @@ This project extracts architectural parameters from RISC-V specification documen
 
 ```
 ┌─────────────────────────────────────────────────────────────────────┐
-│                         RISC-V PARAMETER EXTRACTOR                   │
+│                         RISC-V PARAMETER EXTRACTOR                  │
 └─────────────────────────────────────────────────────────────────────┘
 
 ┌─────────────────┐
@@ -48,71 +48,71 @@ This project extracts architectural parameters from RISC-V specification documen
          │
          ▼
 ┌─────────────────────────────────────────────────────────────────────┐
-│                      PROMPT STRATEGY LAYER                           │
-│  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────┐  ┌──────┐     │
-│  │Zero-Shot │  │One-Shot  │  │Few-Shot  │  │ CoT  │  │ ToT  │     │
-│  └──────────┘  └──────────┘  └──────────┘  └──────┘  └──────┘     │
+│                      PROMPT STRATEGY LAYER                          │
+│  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────┐  ┌──────┐       │
+│  │Zero-Shot │  │One-Shot  │  │Few-Shot  │  │ CoT  │  │ ToT  │       │
+│  └──────────┘  └──────────┘  └──────────┘  └──────┘  └──────┘       │
 └────────────────────────────┬────────────────────────────────────────┘
                              │
                              ▼
 ┌─────────────────────────────────────────────────────────────────────┐
-│                      MODEL API LAYER                                 │
-│  ┌─────────────────────────────────────────────────────────────┐   │
-│  │              OpenRouter API (Primary)                        │   │
-│  │  ┌────────┐ ┌────────┐ ┌────────┐ ┌────────┐ ┌────────┐   │   │
-│  │  │OpenAI  │ │Anthropic│ │Google  │ │ Groq   │ │Cohere  │   │   │
-│  │  │3 models│ │3 models │ │2 models│ │1 model │ │1 model │   │   │
-│  │  └────────┘ └────────┘ └────────┘ └────────┘ └────────┘   │   │
-│  └─────────────────────────────────────────────────────────────┘   │
-│                                                                      │
+│                      MODEL API LAYER                                │
+│  ┌─────────────────────────────────────────────────────────────┐    │
+│  │              OpenRouter API (Primary)                       │    │
+│  │  ┌────────┐ ┌────────┐ ┌────────┐ ┌────────┐ ┌────────┐   │ │    |
+│  │  │OpenAI  │ │Anthropic││Google  │ │ NVDIA  │ │Qwen    │   │ │    |
+│  │  │2 models│ │Mistral  ││2 models│ │llama   │ │Deepseek│   │ │    |
+│  │  └────────┘ └────────┘ └────────┘ └────────┘ └────────┘   │ │    |
+│  └─────────────────────────────────────────────────────────────┘    │
+│                                                                     │
 │  Direct API Wrappers (Future Use):                                  │
-│  ┌────────┐ ┌────────┐ ┌────────┐ ┌────────┐ ┌────────┐          │
-│  │OpenAI  │ │Anthropic│ │Google  │ │ Groq   │ │Cohere  │          │
-│  │  API   │ │  API    │ │  API   │ │  API   │ │  API   │          │
-│  └────────┘ └────────┘ └────────┘ └────────┘ └────────┘          │
+│  ┌────────┐ ┌────────┐ ┌────────┐ ┌────────┐ ┌────────┐             │
+│  │OpenAI  │ │Anthropic│ │Google  │ │ Groq   │ │Cohere  │            │
+│  │  API   │ │  API    │ │  API   │ │  API   │ │  API   │            │
+│  └────────┘ └────────┘ └────────┘ └────────┘ └────────┘             │
 └────────────────────────────┬────────────────────────────────────────┘
                              │
                              ▼
 ┌─────────────────────────────────────────────────────────────────────┐
-│                    ERROR HANDLING LAYER                              │
-│  ┌──────────────────┐         ┌──────────────────────┐             │
-│  │ Skip Strategy    │         │ Exponential Backoff  │             │
-│  │ (Default)        │         │ (Optional)           │             │
-│  └──────────────────┘         └──────────────────────┘             │
+│                    ERROR HANDLING LAYER                             │
+│  ┌──────────────────┐         ┌──────────────────────┐              │
+│  │ Skip Strategy    │         │ Exponential Backoff  │              │
+│  │ (Default)        │         │ (Optional)           │              │
+│  └──────────────────┘         └──────────────────────┘              │
 └────────────────────────────┬────────────────────────────────────────┘
                              │
                              ▼
 ┌─────────────────────────────────────────────────────────────────────┐
-│                    EXTRACTION LAYER                                  │
-│  ┌──────────────────────────────────────────────────────────────┐  │
-│  │         RISCVParamsExtractor (Main Orchestrator)             │  │
-│  │  - Manages multi-model extraction                            │  │
-│  │  - Parses YAML responses                                     │  │
-│  │  - Coordinates prompt strategies                             │  │
-│  └──────────────────────────────────────────────────────────────┘  │
+│                    EXTRACTION LAYER                                 │
+│  ┌──────────────────────────────────────────────────────────────┐   │
+│  │  - RISCVParamsExtractor (Main Orchestrator)                  │   │
+│  │  - Manages multi-model extraction                            │   │
+│  │  - Parses YAML responses                                     │   │
+│  │  - Coordinates prompt strategies                             │   │
+│  └──────────────────────────────────────────────────────────────┘   │
 └────────────────────────────┬────────────────────────────────────────┘
                              │
                              ▼
 ┌─────────────────────────────────────────────────────────────────────┐
-│                    VALIDATION LAYER                                  │
-│  ┌──────────────────────────────────────────────────────────────┐  │
-│  │         Consensus Validator                                   │  │
-│  │  - Counts parameter agreement across models                  │  │
-│  │  - Calculates confidence scores                              │  │
-│  │  - Merges parameter versions                                 │  │
-│  │  - Flags low-confidence items for review                     │  │
-│  └──────────────────────────────────────────────────────────────┘  │
+│                    VALIDATION LAYER                                 │
+│  ┌──────────────────────────────────────────────────────────────┐   │
+│  │  - Consensus Validator                                       │   │
+│  │  - Counts parameter agreement across models                  │   │
+│  │  - Calculates confidence scores                              │   │
+│  │  - Merges parameter versions                                 │   │
+│  │  - Flags low-confidence items for review                     │   │
+│  └──────────────────────────────────────────────────────────────┘   │
 └────────────────────────────┬────────────────────────────────────────┘
                              │
                              ▼
 ┌─────────────────────────────────────────────────────────────────────┐
-│                      OUTPUT LAYER                                    │
-│  ┌──────────────┐  ┌──────────────┐  ┌──────────────────────────┐ │
-│  │ CSV Files    │  │ YAML Files   │  │ Review Files             │ │
-│  │ - Inventory  │  │ - Parameters │  │ - Low confidence params  │ │
-│  │ - Comparison │  │ - Metadata   │  │                          │ │
-│  │ - Detailed   │  │              │  │                          │ │
-│  └──────────────┘  └──────────────┘  └──────────────────────────┘ │
+│                      OUTPUT LAYER                                   │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────────────────┐   │
+│  │ CSV Files    │  │ YAML Files   │  │ Review Files             │   │
+│  │ - Inventory  │  │ - Parameters │  │ - Low confidence params  │   │
+│  │ - Comparison │  │ - Metadata   │  │                          │   │
+│  │ - Detailed   │  │              │  │                          │   │
+│  └──────────────┘  └──────────────┘  └──────────────────────────┘   │
 └─────────────────────────────────────────────────────────────────────┘
 
 Data Flow:
@@ -271,23 +271,6 @@ This will:
 1. Filter parameters with confidence ≥ 0.5 (majority agreement)
 2. Group by source file
 3. Create organized YAML files in `parameters_majority_confidence/`
-
-Output structure:
-```
-parameters_majority_confidence/
-├── privileged_19_3_1/
-│   ├── zero_shot.yaml
-│   ├── one_shot.yaml
-│   ├── few_shot.yaml
-│   ├── chain_of_thought.yaml
-│   └── tree_of_thoughts.yaml
-└── privileged_2_1/
-    ├── zero_shot.yaml
-    ├── one_shot.yaml
-    ├── few_shot.yaml
-    ├── chain_of_thought.yaml
-    └── tree_of_thoughts.yaml
-```
 
 ## LLM Models
 
@@ -592,57 +575,3 @@ logging.basicConfig(level=logging.DEBUG)
 extractor = RISCVParamsExtractor()
 # Now see detailed logs
 ```
-
-## Project Structure
-
-```
-RISC-V Extract/
-├── snippets/                    # Input specification snippets
-│   ├── privileged_19_3_1.txt
-│   └── privileged_2_1.txt
-├── model_apis/                  # LLM provider integrations
-│   ├── __init__.py
-│   ├── openrouter_api.py       # Primary (OpenRouter)
-│   ├── openai_api.py           # Direct OpenAI
-│   ├── anthropic_api.py        # Direct Anthropic
-│   ├── google_api.py           # Direct Google
-│   ├── groq_api.py             # Direct Groq
-│   └── cohere_api.py           # Direct Cohere
-├── prompts/                     # Prompt strategies
-│   ├── __init__.py
-│   └── prompt_strategies.py    # All 5 strategies
-├── extractor/                   # Core extraction logic
-│   ├── __init__.py
-│   ├── risc_v_params_extractor.py  # Main orchestrator
-│   ├── error_handler.py        # Error handling strategies
-│   └── consensus_validator.py  # Validation logic
-├── utils/                       # Output generators
-│   ├── __init__.py
-│   ├── csv_generator.py
-│   └── yaml_generator.py
-├── outputs/                     # Generated results
-│   ├── snippets_inventory.csv
-│   ├── comparison_*.csv
-│   ├── detailed_results_*.csv
-│   └── parameters_*.yaml
-├── main.py                      # Entry point
-├── requirements.txt             # Dependencies
-├── .env                         # Configuration
-└── README.md                    # This file
-```
-
-## Contributing
-
-To contribute:
-1. Add new models in `model_apis/`
-2. Create new prompt strategies in `prompts/`
-3. Enhance validation in `extractor/consensus_validator.py`
-4. Improve error handling in `extractor/error_handler.py`
-
-## License
-
-This project is provided as-is for RISC-V architectural analysis.
-
-## Contact
-
-For questions or issues, please refer to the project documentation or create an issue in the repository.
