@@ -153,8 +153,16 @@ Data Flow:
 ### Environment Variables (.env)
 
 ```bash
-# Primary API (Required)
-OPENROUTER_API_KEY=your_openrouter_api_key_here
+# OpenRouter API Keys (Multiple keys for rate limit distribution)
+# The system uses cyclic rotation to distribute load evenly
+OPENROUTER_API_KEY_1=sk-or-v1-your_first_key_here
+OPENROUTER_API_KEY_2=sk-or-v1-your_second_key_here
+OPENROUTER_API_KEY_3=sk-or-v1-your_third_key_here
+OPENROUTER_API_KEY_4=sk-or-v1-your_fourth_key_here
+OPENROUTER_API_KEY_5=sk-or-v1-your_fifth_key_here
+
+# Alternative: Single API key (if you only have one)
+# OPENROUTER_API_KEY=sk-or-v1-your_single_key_here
 
 # Individual Provider APIs (Optional - for future direct integration)
 OPENAI_API_KEY=sk-...
@@ -163,11 +171,34 @@ GOOGLE_API_KEY=AIzaSy...
 GROQ_API_KEY=gsk_...
 COHERE_API_KEY=...
 
-# Error Handling
-ENABLE_EXPONENTIAL_BACKOFF=false  # Set to 'true' to enable retries
+# Error Handling (ENABLED by default)
+ENABLE_EXPONENTIAL_BACKOFF=true    # Retry on failures with exponential delays
 MAX_RETRIES=3                      # Number of retry attempts
-RETRY_DELAY_SECONDS=2              # Base delay between retries
+RETRY_DELAY_SECONDS=2              # Base delay (2s → 4s → 8s)
+
+# Rate Limit Protection
+REQUEST_DELAY_SECONDS=0.5          # Delay between requests (prevents rate limiting)
 ```
+
+### API Key Rotation Strategy
+
+The system uses **cyclic (round-robin) rotation** across multiple API keys:
+
+```
+Request 1 → Key 1
+Request 2 → Key 2
+Request 3 → Key 3
+Request 4 → Key 4
+Request 5 → Key 5
+Request 6 → Key 1 (cycles back)
+...
+```
+
+**Benefits:**
+- **5x capacity**: Distributes load across 5 accounts
+- **Even distribution**: Each key gets equal usage
+- **Rate limit protection**: Prevents hitting limits on any single key
+- **Automatic failover**: If one key runs out of credits, others continue working
 
 ### Consensus Validation
 
@@ -228,29 +259,60 @@ YAMLGenerator.create_parameters_yaml(
 )
 ```
 
+### Organizing Results by Confidence
+
+After running `main.py`, you can organize results by confidence threshold:
+
+```bash
+python organize_results.py
+```
+
+This will:
+1. Filter parameters with confidence ≥ 0.5 (majority agreement)
+2. Group by source file
+3. Create organized YAML files in `parameters_majority_confidence/`
+
+Output structure:
+```
+parameters_majority_confidence/
+├── privileged_19_3_1/
+│   ├── zero_shot.yaml
+│   ├── one_shot.yaml
+│   ├── few_shot.yaml
+│   ├── chain_of_thought.yaml
+│   └── tree_of_thoughts.yaml
+└── privileged_2_1/
+    ├── zero_shot.yaml
+    ├── one_shot.yaml
+    ├── few_shot.yaml
+    ├── chain_of_thought.yaml
+    └── tree_of_thoughts.yaml
+```
+
 ## LLM Models
 
 ### Models Used (via OpenRouter)
 
 | Provider | Model | Context Length | Notes |
 |----------|-------|----------------|-------|
-| OpenAI | gpt-4o | 128K tokens | Most capable |
+| DeepSeek | deepseek-v3.2 | 64K tokens | Latest reasoning model |
+| Nvidia | nemotron-3-nano-30b-a3b | 32K tokens | Efficient, high-quality |
+| Qwen | qwen3-coder-next | 32K tokens | Code-specialized |
 | OpenAI | gpt-4o-mini | 128K tokens | Fast, cost-effective |
-| OpenAI | gpt-3.5-turbo | 16K tokens | Baseline |
-| Anthropic | claude-3.5-sonnet | 200K tokens | Excellent reasoning |
-| Anthropic | claude-3-opus | 200K tokens | Most powerful |
-| Anthropic | claude-3-haiku | 200K tokens | Fastest |
-| Google | gemini-1.5-pro | 2M tokens | Largest context |
-| Google | gemini-1.5-flash | 1M tokens | Fast inference |
-| Meta (via Groq) | llama-3.1-70b | 128K tokens | Open source |
-| Cohere | command-r-plus | 128K tokens | RAG-optimized |
+| OpenAI | gpt-5.1-codex-mini | 128K tokens | Code understanding |
+| Anthropic | claude-3-haiku | 200K tokens | Fastest Claude |
+| Google | gemini-3-flash-preview | 1M tokens | Latest Gemini |
+| Google | gemini-2.5-flash | 1M tokens | Fast inference |
+| Meta | llama-3.1-70b-instruct | 128K tokens | Open source |
+| Mistral | ministral-14b-2512 | 128K tokens | Efficient reasoning |
 
 ### Model Selection Rationale
 
-- **Diversity**: Multiple providers reduce bias
-- **Capabilities**: Mix of reasoning, speed, and context
-- **Availability**: All accessible through OpenRouter
-- **Cost**: Balanced between performance and budget
+- **Latest models**: DeepSeek V3.2, Gemini 3 Flash, GPT-5.1 Codex
+- **Diversity**: 7 different providers reduce bias
+- **Specialized**: Qwen3 Coder and GPT-5.1 Codex for technical docs
+- **Cost-effective**: Mix of premium and efficient models
+- **Availability**: All accessible through OpenRouter with cyclic key rotation
 
 ## Prompt Strategies
 
@@ -461,9 +523,14 @@ extractor = RISCVParamsExtractor(
 
 **1. API Key Error**
 ```
-ValueError: OpenRouter API key not found
+ValueError: No OpenRouter API keys found
 ```
-**Solution**: Add `OPENROUTER_API_KEY` to `.env` file
+**Solution**: Add API keys to `.env` file:
+```bash
+OPENROUTER_API_KEY_1=sk-or-v1-your_key_here
+# Or use single key:
+OPENROUTER_API_KEY=sk-or-v1-your_key_here
+```
 
 **2. Import Errors**
 ```
@@ -475,17 +542,44 @@ ModuleNotFoundError: No module named 'openai'
 ```
 Warning: Failed to parse YAML
 ```
-**Solution**: This is normal for some models. The system handles it gracefully and marks as failed extraction.
+**Solution**: This is normal for some models. The system handles it gracefully with type-safe keyword parsing and marks as failed extraction.
 
 **4. Rate Limiting**
 ```
 Error: Rate limit exceeded
 ```
-**Solution**: Enable exponential backoff in `.env`:
+**Solution**: The system already has rate limit protection enabled:
+- Cyclic API key rotation (if using multiple keys)
+- 0.5s delay between requests
+- Exponential backoff on failures
+
+If still hitting limits:
 ```bash
-ENABLE_EXPONENTIAL_BACKOFF=true
-MAX_RETRIES=5
+# Increase delay in .env
+REQUEST_DELAY_SECONDS=1.0
+
+# Add more API keys
+OPENROUTER_API_KEY_6=sk-or-v1-...
 ```
+
+**5. Payment Required (402 Error)**
+```
+Error: 402 Client Error: Payment Required
+```
+**Solution**: One or more API keys have insufficient credits.
+
+Check which keys are failing:
+1. Review the comparison CSV to see which models fail consistently
+2. Log into OpenRouter and check credit balance for each key
+3. Remove empty keys from `.env` or add credits
+
+The cyclic rotation will automatically skip to the next key, but if most keys are empty, you'll see many 402 errors.
+
+**6. Mixed Type Keywords Error**
+```
+TypeError: sequence item 1: expected str instance, int found
+```
+**Solution**: This has been fixed with type-safe keyword handling. Update to the latest version of `csv_generator.py`.
 
 ### Debug Mode
 
