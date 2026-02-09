@@ -59,16 +59,16 @@ This project extracts architectural parameters from RISC-V specification documen
 │                      MODEL API LAYER                                │
 │  ┌─────────────────────────────────────────────────────────────┐    │
 │  │              OpenRouter API (Primary)                       │    │
-│  │  ┌────────┐ ┌────────┐ ┌────────┐ ┌────────┐ ┌────────┐   │ │    |
-│  │  │OpenAI  │ │Anthropic││Google  │ │ NVDIA  │ │Qwen    │   │ │    |
-│  │  │2 models│ │Mistral  ││2 models│ │llama   │ │Deepseek│   │ │    |
-│  │  └────────┘ └────────┘ └────────┘ └────────┘ └────────┘   │ │    |
+│  │  ┌────────┐ ┌────────┐ ┌────────┐ ┌────────┐ ┌────────┐     │    |
+│  │  │OpenAI  │ │Anthropic││Google  │ │ NVDIA  │ │Qwen    │     │    |
+│  │  │2 models│ │Mistral  ││2 models│ │llama   │ │Deepseek│     │    |
+│  │  └────────┘ └────────┘ └────────┘ └────────┘ └────────┘     │    |
 │  └─────────────────────────────────────────────────────────────┘    │
 │                                                                     │
 │  Direct API Wrappers (Future Use):                                  │
 │  ┌────────┐ ┌────────┐ ┌────────┐ ┌────────┐ ┌────────┐             │
-│  │OpenAI  │ │Anthropic│ │Google  │ │ Groq   │ │Cohere  │            │
-│  │  API   │ │  API    │ │  API   │ │  API   │ │  API   │            │
+│  │OpenAI  │ │Anthropic││Google  │ │ Groq   │ │Cohere  │            │
+│  │  API   │ │  API    ││  API   │ │  API   │ │  API   │            │
 │  └────────┘ └────────┘ └────────┘ └────────┘ └────────┘             │
 └────────────────────────────┬────────────────────────────────────────┘
                              │
