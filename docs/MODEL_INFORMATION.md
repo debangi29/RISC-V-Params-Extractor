@@ -162,23 +162,19 @@ This document provides detailed information about the 10 LLM models used in the 
 
 ## Model Comparison Matrix
 
-| Model | Provider | Context | Cost | Speed | Reasoning | Best For |
-|-------|----------|---------|------|-------|-----------|----------|
-| GPT-4o | OpenAI | 128K | $$$ | ** | ***** | Complex extraction |
-| GPT-4o-mini | OpenAI | 128K | $ | **** | **** | High-volume |
-| GPT-3.5-turbo | OpenAI | 16K | $ | ***** | *** | Baseline |
-| Claude 3.5 Sonnet | Anthropic | 200K | $$ | *** | ***** | Technical specs |
-| Claude 3 Opus | Anthropic | 200K | $$$$ | ** | ***** | Difficult cases |
-| Claude 3 Haiku | Anthropic | 200K | $ | ***** | *** | Quick tasks |
-| Gemini 1.5 Pro | Google | 2M | $$ | *** | **** | Large docs |
-| Gemini 1.5 Flash | Google | 1M | $ | **** | **** | Fast + large |
-| Llama 3.1 70B | Meta/Groq | 128K | $ | ***** | **** | Open source |
-| Command R+ | Cohere | 128K | $$ | *** | **** | RAG tasks |
+| Model | Provider | Context |
+|-------|----------|---------|
+| GPT-4o | OpenAI | 128K | 
+| GPT-4o-mini | OpenAI | 128K |
+| GPT-3.5-turbo | OpenAI | 16K |
+| Claude 3.5 Sonnet | Anthropic | 200K | 
+| Claude 3 Opus | Anthropic | 200K | 
+| Claude 3 Haiku | Anthropic | 200K | 
+| Gemini 1.5 Pro | Google | 2M | $$ |
+| Gemini 1.5 Flash | Google | 1M | 
+| Llama 3.1 70B | Meta/Groq | 128K |
+| Command R+ | Cohere | 128K | $$ | 
 
-**Legend**:
-- Cost: $ (cheap) to $$$$ (expensive)
-- Speed: * (slow) to ***** (very fast)
-- Reasoning: * (basic) to ***** (excellent)
 
 ## Model Selection Strategy
 
@@ -229,26 +225,6 @@ Based on initial testing:
 | Command R+ | 93% | 7% | 97% |
 
 **Note**: These are estimates. Actual performance varies by prompt strategy and specification complexity.
-
-### Cost Estimates (via OpenRouter)
-
-Approximate costs per 1M tokens (input/output):
-
-| Model | Input | Output | Total (1M/1M) |
-|-------|-------|--------|---------------|
-| GPT-4o | $2.50 | $10.00 | $12.50 |
-| GPT-4o-mini | $0.15 | $0.60 | $0.75 |
-| GPT-3.5-turbo | $0.50 | $1.50 | $2.00 |
-| Claude 3.5 Sonnet | $3.00 | $15.00 | $18.00 |
-| Claude 3 Opus | $15.00 | $75.00 | $90.00 |
-| Claude 3 Haiku | $0.25 | $1.25 | $1.50 |
-| Gemini 1.5 Pro | $1.25 | $5.00 | $6.25 |
-| Gemini 1.5 Flash | $0.075 | $0.30 | $0.375 |
-| Llama 3.1 70B | $0.59 | $0.79 | $1.38 |
-| Command R+ | $2.50 | $10.00 | $12.50 |
-
-**Typical extraction**: ~2K input tokens, ~500 output tokens per snippet
-**Cost per snippet** (all 10 models): ~$0.10-0.15
 
 ## API Configuration
 
@@ -359,11 +335,6 @@ To add new models:
 3. Test with sample snippets
 4. Update this documentation
 
-Potential additions:
-- Mistral Large
-- Llama 3.2 models
-- GPT-4 Turbo
-- Claude 4 (when released)
 
 ## Conclusion
 
@@ -373,4 +344,3 @@ The 10-model ensemble provides:
 - **Flexibility**: Choose models based on needs
 - **Future-proof**: Easy to add new models
 
-For most use cases, the **full 10-model suite** is recommended for maximum confidence in extracted parameters.
