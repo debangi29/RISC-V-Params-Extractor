@@ -201,16 +201,16 @@ This will:
 
 | Provider | Model | Context Length | Notes |
 |----------|-------|----------------|-------|
-| DeepSeek | deepseek-v3.2 | 64K tokens | Latest reasoning model |
-| Nvidia | nemotron-3-nano-30b-a3b | 32K tokens | Efficient, high-quality |
-| Qwen | qwen3-coder-next | 32K tokens | Code-specialized |
-| OpenAI | gpt-4o-mini | 128K tokens | Fast, cost-effective |
-| OpenAI | gpt-5.1-codex-mini | 128K tokens | Code understanding |
-| Anthropic | claude-3-haiku | 200K tokens | Fastest Claude |
-| Google | gemini-3-flash-preview | 1M tokens | Latest Gemini |
-| Google | gemini-2.5-flash | 1M tokens | Fast inference |
-| Meta | llama-3.1-70b-instruct | 128K tokens | Open source |
-| Mistral | ministral-14b-2512 | 128K tokens | Efficient reasoning |
+| DeepSeek | deepseek-v3.2 | 163,840 tokens | Latest reasoning model |
+| Nvidia | nemotron-3-nano-30b-a3b | 128,000 tokens | Efficient, high-quality |
+| Qwen | qwen3-coder-next | 400,000 tokens | Code-specialized |
+| OpenAI | gpt-4o-mini | 200,000 tokens | Fast, cost-effective |
+| OpenAI | gpt-5.1-codex-mini | 1,048,576 tokens | Code understanding |
+| Anthropic | claude-3-haiku | 1,048,576 tokens | Fastest Claude |
+| Google | gemini-3-flash-preview | 131,072 tokens | Latest Gemini |
+| Google | gemini-2.5-flash | 262,144 tokens | Fast inference |
+| Meta | llama-3.1-70b-instruct | 262,144 tokens | Open source |
+| Mistral | ministral-14b-2512 | 262,144 tokens | Efficient reasoning |
 
 ### Model Selection Rationale
 
