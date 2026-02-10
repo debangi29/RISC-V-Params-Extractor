@@ -1,0 +1,2502 @@
+{
+    "deepseek/deepseek-v3.2": {
+        "model": "deepseek/deepseek-v3.2",
+        "successful_tests": 20,
+        "total_tests": 20,
+        "success_rate": 100.0,
+        "avg_precision": 90.0,
+        "avg_recall": 75.83,
+        "avg_f1_score": 80.67,
+        "detailed_results": [
+            {
+                "success": true,
+                "extracted": [
+                    "multiplication_cycle_count",
+                    "mul_instruction_latency"
+                ],
+                "ground_truth": [
+                    "MUL instruction latency",
+                    "Number of execution cycles",
+                    "Operand width",
+                    "Pipeline structure"
+                ],
+                "response_text": "```yaml\n- name: multiplication_cycle_count\n  description: Number of cycles required to complete a multiplication operation\n  type: implementation-specific\n  constraints: May vary across implementations; latency may depend on operand width and pipeline structure\n  keywords: [may, vary, implementations]\n- name: mul_instruction_latency\n  description: Latency of the MUL instruction\n  type: implementation-specific\n  constraints: May depend on operand width and pipeline structure\n  keywords: [may, depend]\n```"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "branch_prediction_hardware_inclusion",
+                    "branch_history_storage_size",
+                    "branch_history_storage_organization"
+                ],
+                "ground_truth": [
+                    "Branch prediction support",
+                    "Branch history storage size",
+                    "Branch history organization"
+                ],
+                "response_text": "- name: branch_prediction_hardware_inclusion\n  description: Whether branch prediction hardware is included in the processor\n  type: optional\n  constraints: None specified\n  keywords: [may]\n- name: branch_history_storage_size\n  description: Size of the branch history storage\n  type: implementation-specific\n  constraints: None specified\n  keywords: [may, differ]\n- name: branch_history_storage_organization\n  description: Organization of the branch history storage\n  type: implementation-specific\n  constraints: None specified\n  keywords: [may, differ]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "cache_level_count",
+                    "total_cache_capacity"
+                ],
+                "ground_truth": [
+                    "Number of cache levels",
+                    "Cache capacity"
+                ],
+                "response_text": "- name: cache_level_count\n  description: Number of cache levels included in the system\n  type: implementation-specific\n  constraints: At least one level\n  keywords: [may]\n- name: total_cache_capacity\n  description: Total capacity of all cache levels\n  type: implementation-specific\n  constraints: May vary across implementations\n  keywords: [may]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "cache_block_size"
+                ],
+                "ground_truth": [
+                    "Cache block size"
+                ],
+                "response_text": "- name: cache_block_size\n  description: Size of a contiguous memory region represented by a cache block\n  type: implementation-specific\n  constraints: May vary depending on the memory hierarchy design\n  keywords: [may]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "tlb_organization",
+                    "tlb_entry_count_per_organization"
+                ],
+                "ground_truth": [
+                    "TLB organization",
+                    "Instruction TLB entries",
+                    "Data TLB entries"
+                ],
+                "response_text": "- name: tlb_organization\n  description: Whether the translation lookaside buffer is unified or split between instruction and data accesses\n  type: implementation-specific\n  constraints: May be unified or split\n  keywords: [may]\n- name: tlb_entry_count_per_organization\n  description: Number of entries in the TLB, which may differ between unified and split configurations\n  type: implementation-specific\n  constraints: Number may differ between unified and split cases\n  keywords: [may]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "virtual_memory_support",
+                    "page_size",
+                    "page_table_depth"
+                ],
+                "ground_truth": [
+                    "Virtual memory support",
+                    "Page size",
+                    "Page table depth"
+                ],
+                "response_text": "- name: virtual_memory_support\n  description: Whether virtual memory is supported\n  type: optional\n  constraints: None specified\n  keywords: [may, optionally]\n- name: page_size\n  description: Size of a memory page\n  type: implementation-specific\n  constraints: May vary across systems\n  keywords: [may, vary]\n- name: page_table_depth\n  description: Depth (number of levels) of the page table\n  type: implementation-specific\n  constraints: May vary across systems\n  keywords: [may, vary]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "interrupt_response_time"
+                ],
+                "ground_truth": [
+                    "Interrupt response latency"
+                ],
+                "response_text": "```yaml\n- name: interrupt_response_time\n  description: Delay between interrupt request and handler execution\n  type: implementation-specific\n  constraints: Software must not assume fixed timing\n  keywords: [may, should]\n```"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "exception_type_support",
+                    "exception_ordering_guarantees"
+                ],
+                "ground_truth": [
+                    "Exception precision",
+                    "Exception ordering guarantees"
+                ],
+                "response_text": "```yaml\n- name: exception_type_support\n  description: Whether exceptions are precise or imprecise\n  type: optional\n  constraints: Implementation may support either type\n  keywords: [may]\n- name: exception_ordering_guarantees\n  description: Guarantees provided for the ordering of exceptions\n  type: implementation-specific\n  constraints: May differ between implementations\n  keywords: [may, differ]\n```"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "atomic_read_modify_write_instruction_support",
+                    "atomicity_guarantee_region_size"
+                ],
+                "ground_truth": [
+                    "Atomic instruction support",
+                    "Atomicity granularity"
+                ],
+                "response_text": "- name: atomic_read_modify_write_instruction_support\n  description: Whether atomic read-modify-write instructions are supported\n  type: optional\n  constraints: None specified\n  keywords: [may]\n- name: atomicity_guarantee_region_size\n  description: Maximum memory region size over which atomicity is guaranteed\n  type: implementation-specific\n  constraints: May vary\n  keywords: [may, vary]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "memory_ordering_strength"
+                ],
+                "ground_truth": [
+                    "Memory ordering model",
+                    "Ordering guarantees"
+                ],
+                "response_text": "```yaml\n- name: memory_ordering_strength\n  description: Strength of ordering rules enforced by the memory system\n  type: implementation-specific\n  constraints: Must be at least as strong as the base ISA requirements\n  keywords: [may, may, vary]\n```"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "floating_point_unit_presence",
+                    "floating_point_precisions_supported",
+                    "floating_point_rounding_modes_supported"
+                ],
+                "ground_truth": [
+                    "Floating-point unit presence",
+                    "Floating-point precision",
+                    "Rounding modes"
+                ],
+                "response_text": "```yaml\n- name: floating_point_unit_presence\n  description: Whether a floating-point unit is present\n  type: optional\n  constraints: None specified\n  keywords: [may, optionally]\n\n- name: floating_point_precisions_supported\n  description: Which floating-point precisions are supported\n  type: implementation-specific\n  constraints: None specified\n  keywords: [may]\n\n- name: floating_point_rounding_modes_supported\n  description: Which floating-point rounding modes are supported\n  type: implementation-specific\n  constraints: None specified\n  keywords: [may]\n```"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "csr_access_privilege_modes",
+                    "csr_set_per_privilege_level"
+                ],
+                "ground_truth": [
+                    "CSR accessibility",
+                    "Privilege-level access rules"
+                ],
+                "response_text": "```yaml\n- name: csr_access_privilege_modes\n  description: Which privilege modes can access certain control and status registers\n  type: implementation-specific\n  constraints: None specified\n  keywords: [may]\n\n- name: csr_set_per_privilege_level\n  description: The set of CSRs available at each privilege level\n  type: implementation-specific\n  constraints: None specified\n  keywords: [may, vary]\n```"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "low_power_operating_states_support",
+                    "low_power_operating_state_count",
+                    "low_power_state_transition_latency"
+                ],
+                "ground_truth": [
+                    "Low-power state support",
+                    "Number of power states",
+                    "Power state transition latency"
+                ],
+                "response_text": "```yaml\n- name: low_power_operating_states_support\n  description: Whether low-power operating states are provided\n  type: optional\n  constraints: None specified\n  keywords: [may]\n- name: low_power_operating_state_count\n  description: Number of low-power operating states\n  type: implementation-specific\n  constraints: May differ between designs\n  keywords: [may, differ]\n- name: low_power_state_transition_latency\n  description: Latency for transitioning between low-power states\n  type: implementation-specific\n  constraints: May differ between designs\n  keywords: [may, differ]\n```"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "instruction_cache_replacement_policy"
+                ],
+                "ground_truth": [
+                    "Instruction cache replacement policy"
+                ],
+                "response_text": "- name: instruction_cache_replacement_policy\n  description: The policy used to decide which cache line to replace when the instruction cache is full\n  type: implementation-specific\n  constraints: Chosen by the design; examples include random or least-recently-used\n  keywords: [chosen by the design, may]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "unaligned_memory_access_support",
+                    "unaligned_memory_access_performance"
+                ],
+                "ground_truth": [
+                    "Unaligned access support",
+                    "Unaligned access penalty"
+                ],
+                "response_text": "```yaml\n- name: unaligned_memory_access_support\n  description: Whether unaligned memory accesses are supported by the implementation\n  type: optional\n  constraints: None specified\n  keywords: [may]\n- name: unaligned_memory_access_performance\n  description: Performance impact of unaligned memory accesses\n  type: implementation-specific\n  constraints: None specified\n  keywords: [may, vary, implementations]\n```"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "vector_register_max_length"
+                ],
+                "ground_truth": [
+                    "Vector register length",
+                    "Supported vector lengths"
+                ],
+                "response_text": "- name: vector_register_max_length\n  description: Maximum length of vector registers\n  type: implementation-specific\n  constraints: May vary; multiple lengths may be supported\n  keywords: [may, may]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "debug_mode_entry_triggers",
+                    "hardware_breakpoint_count"
+                ],
+                "ground_truth": [
+                    "Debug entry mechanisms",
+                    "Number of hardware breakpoints"
+                ],
+                "response_text": "- name: debug_mode_entry_triggers\n  description: Mechanisms through which debug mode can be entered\n  type: implementation-specific\n  constraints: None specified\n  keywords: [may]\n- name: hardware_breakpoint_count\n  description: Number of supported hardware breakpoints\n  type: implementation-specific\n  constraints: None specified\n  keywords: [may, differ]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "hardware_prefetching_implementation",
+                    "prefetching_distance",
+                    "prefetching_aggressiveness"
+                ],
+                "ground_truth": [
+                    "Hardware prefetching support",
+                    "Prefetch distance",
+                    "Prefetch aggressiveness"
+                ],
+                "response_text": "```yaml\n- name: hardware_prefetching_implementation\n  description: Whether hardware prefetching is employed to reduce memory access latency\n  type: optional\n  constraints: None explicitly stated\n  keywords: [may]\n- name: prefetching_distance\n  description: The distance (lookahead) for hardware prefetching\n  type: implementation-specific\n  constraints: None explicitly stated\n  keywords: [may, vary]\n- name: prefetching_aggressiveness\n  description: The aggressiveness level of hardware prefetching\n  type: implementation-specific\n  constraints: None explicitly stated\n  keywords: [may, vary]\n```"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "machine_timer_counter_frequency",
+                    "machine_timer_counter_resolution"
+                ],
+                "ground_truth": [
+                    "Timer frequency",
+                    "Timer resolution"
+                ],
+                "response_text": "- name: machine_timer_counter_frequency\n  description: Frequency of the monotonically increasing counter provided by the machine timer\n  type: implementation-specific\n  constraints: None explicitly stated\n  keywords: [may]\n- name: machine_timer_counter_resolution\n  description: Resolution of the monotonically increasing counter provided by the machine timer\n  type: implementation-specific\n  constraints: None explicitly stated\n  keywords: [may]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "cache_coherency_mechanism_presence",
+                    "cache_coherency_protocol"
+                ],
+                "ground_truth": [
+                    "Cache coherency support",
+                    "Cache coherency protocol"
+                ],
+                "response_text": "```yaml\n- name: cache_coherency_mechanism_presence\n  description: Whether a cache coherency mechanism is implemented in multi-agent systems\n  type: optional\n  constraints: Only relevant for systems with multiple agents\n  keywords: [may]\n\n- name: cache_coherency_protocol\n  description: The specific protocol used to maintain cache coherency\n  type: implementation-specific\n  constraints: None specified\n  keywords: [may, differ, implementations]\n```"
+            }
+        ]
+    },
+    "nvidia/nemotron-3-nano-30b-a3b": {
+        "model": "nvidia/nemotron-3-nano-30b-a3b",
+        "successful_tests": 20,
+        "total_tests": 20,
+        "success_rate": 100.0,
+        "avg_precision": 65.0,
+        "avg_recall": 60.0,
+        "avg_f1_score": 61.67,
+        "detailed_results": [
+            {
+                "success": true,
+                "extracted": [],
+                "ground_truth": [
+                    "MUL instruction latency",
+                    "Number of execution cycles",
+                    "Operand width",
+                    "Pipeline structure"
+                ],
+                "response_text": ""
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "branch_prediction_hardware_support",
+                    "branch_history_storage_size",
+                    "branch_history_storage_organization"
+                ],
+                "ground_truth": [
+                    "Branch prediction support",
+                    "Branch history storage size",
+                    "Branch history organization"
+                ],
+                "response_text": "```yaml\n- name: branch_prediction_hardware_support\n  description: Whether the processor includes branch prediction hardware\n  type: optional\n  constraints: May be absent; if present, implementation-defined\n  keywords:\n    - may\n\n- name: branch_history_storage_size\n  description: Size of the branch history storage\n  type: implementation-defined\n  constraints: Not specified; may vary between designs\n  keywords:\n    - size\n    - may\n\n- name: branch_history_storage_organization\n  description: Organization of the branch history storage\n  type: implementation-defined\n  constraints: May vary between designs\n  keywords:\n    - organization\n    - may\n```"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "cache_levels_supported"
+                ],
+                "ground_truth": [
+                    "Number of cache levels",
+                    "Cache capacity"
+                ],
+                "response_text": "- name: cache_levels_supported\n  description: Number of cache hierarchy levels present in the system\n  type: configurable\n  constraints: Minimum 1 level; no upper bound specified\n  keywords: [\"may\", \"one or"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "cache_block_size"
+                ],
+                "ground_truth": [
+                    "Cache block size"
+                ],
+                "response_text": "- name: cache_block_size\n  description: Size of a cache block (in bytes or words)\n  type: implementation-specific\n  constraints: None specified; may vary based on the memory hierarchy design\n  keywords: [may, vary, depending]"
+            },
+            {
+                "success": true,
+                "extracted": [],
+                "ground_truth": [
+                    "TLB organization",
+                    "Instruction TLB entries",
+                    "Data TLB entries"
+                ],
+                "response_text": ""
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "virtual_memory_support",
+                    "page_size",
+                    "page_table_depth"
+                ],
+                "ground_truth": [
+                    "Virtual memory support",
+                    "Page size",
+                    "Page table depth"
+                ],
+                "response_text": "```yaml\n- name: virtual_memory_support\n  description: Whether virtual memory is supported by the implementation\n  type: optional\n  constraints: May be optionally supported\n  keywords: [optional, may]\n\n- name: page_size\n  description: Size of a memory page in bytes\n  type: implementation-defined\n  constraints: Varies across implementations; no fixed range specified\n  keywords: [implementation-defined, may, varies]\n\n- name: page_table_depth\n  description: Depth of the page table hierarchy\n  type: implementation-defined\n  constraints: May vary across systems\n  keywords: [implementation-defined, may, varies]\n```"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "interrupt_response_delay"
+                ],
+                "ground_truth": [
+                    "Interrupt response latency"
+                ],
+                "response_text": "- name: interrupt_response_delay\n  description: Delay between an interrupt request and the execution of its handler\n  type: implementation-specific\n  constraints: May vary; software should not assume a fixed response time\n  keywords: [may, should]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "exception_precision_support",
+                    "exception_ordering_guarantee"
+                ],
+                "ground_truth": [
+                    "Exception precision",
+                    "Exception ordering guarantees"
+                ],
+                "response_text": "```yaml\n- name: exception_precision_support\n  description: Whether the implementation supports precise or imprecise exceptions\n  type: optional\n  constraints: Must be precise or imprecise; optional feature\n  keywords: [may, precise, imprecise]\n\n- name: exception_ordering_guarantee\n  description: Guarantees provided for ordering of exceptions\n  type: implementation-specific\n  constraints: Guarantees may differ between implementations\n  keywords: [may, differ, guarantees]\n```"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "atomic_rmw_instruction_support",
+                    "atomic_rmw_atomicity_region_size"
+                ],
+                "ground_truth": [
+                    "Atomic instruction support",
+                    "Atomicity granularity"
+                ],
+                "response_text": "```yaml\n- name: atomic_rmw_instruction_support\n  description: Whether atomic read-modify-write instructions are supported\n  type: optional\n  constraints: May be supported; no mandatory requirement\n  keywords: [may, supported]\n\n- name: atomic_rmw_atomicity_region_size\n  description: Maximum memory region size over which atomicity is guaranteed\n  type: implementation-specific\n  constraints: May vary between implementations\n  keywords: [may, vary]\n```"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "memory_ordering_behavior"
+                ],
+                "ground_truth": [
+                    "Memory ordering model",
+                    "Ordering guarantees"
+                ],
+                "response_text": "```yaml\n- name: memory_ordering_behavior\n  description: Strength and specifics of memory ordering enforcement by the memory system\n  type: implementation-defined\n  constraints: Must be stronger than or equal to base ISA ordering; behavior may vary across implementations\n  keywords: [\"may\", \"may vary\", \"stronger than\", \"enforce ordering rules\"]\n```"
+            },
+            {
+                "success": true,
+                "extracted": [],
+                "ground_truth": [
+                    "Floating-point unit presence",
+                    "Floating-point precision",
+                    "Rounding modes"
+                ],
+                "response_text": ""
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "csr_accessibility_multi_privilege_modes",
+                    "csr_set_per_privilege_level"
+                ],
+                "ground_truth": [
+                    "CSR accessibility",
+                    "Privilege-level access rules"
+                ],
+                "response_text": "```yaml\n- name: csr_accessibility_multi_privilege_modes\n  description: Whether control and status registers can be accessed from multiple privilege modes\n  type: optional\n  constraints: May be accessible from multiple privilege modes; no fixed set\n  keywords:\n    - may\n    - accessible\n    - multiple\n    - privilege\n    - modes\n\n- name: csr_set_per_privilege_level\n  description: Set of control and status registers available at each privilege level\n  type: implementation-specific\n  constraints: May vary between privilege levels\n  keywords:\n    - may\n    - vary\n    - set\n    - each\n    - level\n```"
+            },
+            {
+                "success": true,
+                "extracted": [],
+                "ground_truth": [
+                    "Low-power state support",
+                    "Number of power states",
+                    "Power state transition latency"
+                ],
+                "response_text": ""
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "instruction_cache_replacement_behavior"
+                ],
+                "ground_truth": [
+                    "Instruction cache replacement policy"
+                ],
+                "response_text": "- name: instruction_cache_replacement_behavior\n  description: Replacement policy used for the instruction cache\n  type: implementation-defined\n  constraints: May employ random or LRU replacement policies\n  keywords: [\"may\"]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "unaligned_memory_access_support"
+                ],
+                "ground_truth": [
+                    "Unaligned access support",
+                    "Unaligned access penalty"
+                ],
+                "response_text": "```yaml\n- name: unaligned_memory_access_support\n  description: Whether unaligned memory accesses are supported\n  type: optional\n  constraints: Support is optional; performance impact may vary across implementations\n  keywords: [may, performance impact, vary, across, implementations]\n```"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "max_vector_register_length",
+                    "supported_vector_lengths"
+                ],
+                "ground_truth": [
+                    "Vector register length",
+                    "Supported vector lengths"
+                ],
+                "response_text": "```yaml\n- name: max_vector_register_length\n  description: Maximum length of vector registers supported by the implementation\n  type: implementation-defined\n  constraints: No explicit constraints; may vary across implementations\n  keywords: [may, vary]\n\n- name: supported_vector_lengths\n  description: Set of vector register lengths that the implementation may support\n  type: optional\n  constraints: May include multiple lengths; no fixed range specified\n  keywords: [may, supported, multiple]\n```"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "debug_mode_entry_method",
+                    "hardware_breakpoint_count"
+                ],
+                "ground_truth": [
+                    "Debug entry mechanisms",
+                    "Number of hardware breakpoints"
+                ],
+                "response_text": "- name: debug_mode_entry_method\n  description: How debug mode can be entered\n  type: implementation-defined\n  constraints: External or internal triggers; implementation-defined\n  keywords: [\"may\", \"external\", \"internal\"]\n\n- name: hardware_breakpoint_count\n  description: Number of supported hardware breakpoints\n  type: implementation-specific\n  constraints: May differ; no fixed limit specified\n  keywords: [\"may\", \"differ\"]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "hardware_prefetching_enabled",
+                    "hardware_prefetching_distance",
+                    "hardware_prefetching_aggressiveness"
+                ],
+                "ground_truth": [
+                    "Hardware prefetching support",
+                    "Prefetch distance",
+                    "Prefetch aggressiveness"
+                ],
+                "response_text": "```yaml\n- name: hardware_prefetching_enabled\n  description: Whether hardware prefetching is enabled\n  type: optional\n  constraints: May be employed (implementation-defined)\n  keywords: [\"may\", \"optional\"]\n\n- name: hardware_prefetching_distance\n  description: Prefetching distance (e.g., number of cache lines or bytes ahead)\n  type: implementation-defined\n  constraints: May vary; no explicit range specified\n  keywords: [\"may\", \"vary\"]\n\n- name: hardware_prefetching_aggressiveness\n  description: Level of aggressiveness of the prefetcher\n  type: implementation-defined\n  constraints: May vary; no explicit range specified\n  keywords: [\"may\", \"vary\"]\n```"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "machine_timer_frequency",
+                    "machine_timer_resolution"
+                ],
+                "ground_truth": [
+                    "Timer frequency",
+                    "Timer resolution"
+                ],
+                "response_text": "- name: machine_timer_frequency\n  description: Frequency of the machine timer counter\n  type: implementation-defined\n  constraints: May vary; no fixed value\n  keywords: [may, vary]\n\n- name: machine_timer_resolution\n  description: Resolution of the machine timer counter\n  type: implementation-defined\n  constraints: May vary; no fixed value\n  keywords: [may, vary]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "cache_coherency_mechanism_used",
+                    "coherency_protocol_type"
+                ],
+                "ground_truth": [
+                    "Cache coherency support",
+                    "Cache coherency protocol"
+                ],
+                "response_text": "```yaml\n- name: cache_coherency_mechanism_used\n  description: Use of a cache coherency mechanism in systems with multiple agents\n  type: optional\n  constraints: May be used only in multi-agent systems; if used, the protocol can vary\n  keywords: [\"may\", \"used\", \"multiple\", \"agents\"]\n\n- name: coherency_protocol_type\n  description: Specific coherence protocol employed to maintain cache coherency\n  type: implementation-specific\n  constraints: No fixed protocol; may differ between implementations\n  keywords: [\"may\", \"differ\","
+            }
+        ]
+    },
+    "qwen/qwen3-coder-next": {
+        "model": "qwen/qwen3-coder-next",
+        "successful_tests": 20,
+        "total_tests": 20,
+        "success_rate": 100.0,
+        "avg_precision": 82.50,
+        "avg_recall": 77.50,
+        "avg_f1_score": 79.17,
+        "detailed_results": [
+            {
+                "success": true,
+                "extracted": [
+                    "multiplication_cycle_count",
+                    "mul_instruction_latency"
+                ],
+                "ground_truth": [
+                    "MUL instruction latency",
+                    "Number of execution cycles",
+                    "Operand width",
+                    "Pipeline structure"
+                ],
+                "response_text": "- name: multiplication_cycle_count\n  description: Number of cycles required to complete a multiplication operation\n  type: implementation-specific\n  constraints: May vary across implementations\n  keywords: [may, vary]\n\n- name: mul_instruction_latency\n  description: Latency of the MUL instruction\n  type: implementation-specific\n  constraints: May depend on operand width and pipeline structure\n  keywords: [may, depend]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "branch_prediction_hardware",
+                    "branch_history_storage_size",
+                    "branch_history_storage_organization"
+                ],
+                "ground_truth": [
+                    "Branch prediction support",
+                    "Branch history storage size",
+                    "Branch history organization"
+                ],
+                "response_text": "- name: branch_prediction_hardware\n  description: Presence of branch prediction hardware to reduce control hazards\n  type: optional\n  constraints: None specified beyond presence being optional\n  keywords: [may]\n\n- name: branch_history_storage_size\n  description: Size of branch history storage used by branch prediction\n  type: implementation-specific\n  constraints: None specified beyond differing between designs\n  keywords: [may]\n\n- name: branch_history_storage_organization\n  description: Organization (e.g., structure, format, associativity) of branch history storage\n  type: implementation-specific\n  constraints: None specified beyond differing between designs\n  keywords: [may]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "cache_levels_count",
+                    "total_cache_capacity"
+                ],
+                "ground_truth": [
+                    "Number of cache levels",
+                    "Cache capacity"
+                ],
+                "response_text": "- name: cache_levels_count\n  description: Number of cache levels present in the system\n  type: implementation-specific\n  constraints: At least one level may be present\n  keywords: [may, one or more]\n\n- name: total_cache_capacity\n  description: Total cache capacity across all levels\n  type: implementation-specific\n  constraints: May vary across implementations\n  keywords: [may, vary]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "cache_block_size"
+                ],
+                "ground_truth": [
+                    "Cache block size"
+                ],
+                "response_text": "- name: cache_block_size\n  description: Size of a cache block in bytes\n  type: implementation-specific\n  constraints: Varies depending on memory hierarchy design\n  keywords: [may, vary]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "tlb_structure",
+                    "tlb_entry_count_instruction",
+                    "tlb_entry_count_data"
+                ],
+                "ground_truth": [
+                    "TLB organization",
+                    "Instruction TLB entries",
+                    "Data TLB entries"
+                ],
+                "response_text": "- name: tlb_structure\n  description: Whether the TLB is unified or split between instruction and data accesses\n  type: implementation-specific\n  constraints: May be unified or split\n  keywords: [may]\n\n- name: tlb_entry_count_instruction\n  description: Number of entries in the instruction-side TLB (when split)\n  type: implementation-specific\n  constraints: Number of entries may differ from data-side TLB\n  keywords: [may, differ]\n\n- name: tlb_entry_count_data\n  description: Number of entries in the data-side TLB (when split)\n  type: implementation-specific\n  constraints: Number of entries may differ from instruction-side TLB\n  keywords: [may, differ]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "virtual_memory_support",
+                    "page_size",
+                    "page_table_depth"
+                ],
+                "ground_truth": [
+                    "Virtual memory support",
+                    "Page size",
+                    "Page table depth"
+                ],
+                "response_text": "- name: virtual_memory_support\n  description: Whether virtual memory is supported by the implementation\n  type: optional\n  constraints: Optional feature; if supported, page size and page table depth may vary\n  keywords: [may, optionally]\n\n- name: page_size\n  description: Size of a memory page in bytes\n  type: implementation-specific\n  constraints: May vary across systems\n  keywords: [may]\n\n- name: page_table_depth\n  description: Number of levels in the page table hierarchy\n  type: implementation-specific\n  constraints: May vary across systems\n  keywords: [may]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "interrupt_response_time"
+                ],
+                "ground_truth": [
+                    "Interrupt response latency"
+                ],
+                "response_text": "- name: interrupt_response_time\n  description: Delay between an interrupt request and the start of handler execution\n  type: implementation-specific\n  constraints: Not fixed; software must not assume determinism\n  keywords: [may vary, should not assume]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "exception_precision"
+                ],
+                "ground_truth": [
+                    "Exception precision",
+                    "Exception ordering guarantees"
+                ],
+                "response_text": "- name: exception_precision\n  description: Whether exceptions are precise or imprecise\n  type: implementation-specific\n  constraints: None explicitly stated beyond the binary choice\n  keywords: [may, may differ]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "atomic_rmw_support",
+                    "atomic_region_size"
+                ],
+                "ground_truth": [
+                    "Atomic instruction support",
+                    "Atomicity granularity"
+                ],
+                "response_text": "- name: atomic_rmw_support\n  description: Whether atomic read-modify-write instructions are supported\n  type: optional\n  constraints: None specified beyond support being optional\n  keywords: [may]\n\n- name: atomic_region_size\n  description: Maximum size of memory region over which atomicity is guaranteed for atomic operations\n  type: implementation-specific\n  constraints: May vary by implementation\n  keywords: [may, vary]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "memory_ordering_strength"
+                ],
+                "ground_truth": [
+                    "Memory ordering model",
+                    "Ordering guarantees"
+                ],
+                "response_text": "- name: memory_ordering_strength\n  description: Strength of memory ordering rules enforced by the memory system relative to base ISA requirements\n  type: implementation-specific\n  constraints: May be stronger than base ISA requirements; exact behavior may vary\n  keywords: [may, may]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "floating_point_unit_present",
+                    "floating_point_precision_support",
+                    "floating_point_rounding_mode_support"
+                ],
+                "ground_truth": [
+                    "Floating-point unit presence",
+                    "Floating-point precision",
+                    "Rounding modes"
+                ],
+                "response_text": "- name: floating_point_unit_present\n  description: Whether a floating-point unit is present\n  type: optional\n  constraints: None specified beyond presence being optional\n  keywords: [may, optionally]\n\n- name: floating_point_precision_support\n  description: Supported floating-point precisions (e.g., single, double, half)\n  type: implementation-specific\n  constraints: May differ across implementations\n  keywords: [may, differ]\n\n- name: floating_point_rounding_mode_support\n  description: Supported floating-point rounding modes (e.g., RTZ, RNE, RDN, RUP, RMM)\n  type: implementation-specific\n  constraints: May differ across implementations\n  keywords: [may, differ]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "csr_privilege_access"
+                ],
+                "ground_truth": [
+                    "CSR accessibility",
+                    "Privilege-level access rules"
+                ],
+                "response_text": "- name: csr_privilege_access\n  description: Which privilege modes can access a given CSR\n  type: implementation-specific\n  constraints: CSR accessibility may vary per privilege level\n  keywords: [may, may vary]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "low_power_state_count",
+                    "low_power_state_transition_latency"
+                ],
+                "ground_truth": [
+                    "Low-power state support",
+                    "Number of power states",
+                    "Power state transition latency"
+                ],
+                "response_text": "- name: low_power_state_count\n  description: Number of low-power operating states supported by the processor\n  type: implementation-specific\n  constraints: Number may differ between designs\n  keywords: [may, number of such states ... may differ]\n\n- name: low_power_state_transition_latency\n  description: Latency for transitioning into or out of low-power operating states\n  type: implementation-specific\n  constraints: Latency may differ between designs\n  keywords: [transition latency may differ]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "instruction_cache_replacement_policy"
+                ],
+                "ground_truth": [
+                    "Instruction cache replacement policy"
+                ],
+                "response_text": "- name: instruction_cache_replacement_policy\n  description: Algorithm used to select cache lines for replacement in the instruction cache\n  type: implementation-specific\n  constraints: None explicitly stated beyond policy choice\n  keywords: [chosen by the design, may]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "unaligned_memory_access_support"
+                ],
+                "ground_truth": [
+                    "Unaligned access support",
+                    "Unaligned access penalty"
+                ],
+                "response_text": "- name: unaligned_memory_access_support\n  description: Whether unaligned memory accesses are supported\n  type: optional\n  constraints: None explicitly specified beyond support being optional\n  keywords: [may, may]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "vector_register_max_length"
+                ],
+                "ground_truth": [
+                    "Vector register length",
+                    "Supported vector lengths"
+                ],
+                "response_text": "- name: vector_register_max_length\n  description: Maximum length of vector registers in bits\n  type: implementation-specific\n  constraints: May vary; multiple vector lengths may be supported\n  keywords: [may, may vary, multiple, may be supported]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "debug_entry_trigger",
+                    "hardware_breakpoint_count"
+                ],
+                "ground_truth": [
+                    "Debug entry mechanisms",
+                    "Number of hardware breakpoints"
+                ],
+                "response_text": "- name: debug_entry_trigger\n  description: Mechanism by which debug mode is entered (external or internal)\n  type: configurable\n  constraints: May use external triggers, internal triggers, or both\n  keywords: [may, through, or]\n\n- name: hardware_breakpoint_count\n  description: Number of hardware breakpoints supported by the implementation\n  type: implementation-specific\n  constraints: May differ across implementations\n  keywords: [may, differ]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "hardware_prefetching_support",
+                    "prefetch_distance",
+                    "prefetch_aggressiveness"
+                ],
+                "ground_truth": [
+                    "Hardware prefetching support",
+                    "Prefetch distance",
+                    "Prefetch aggressiveness"
+                ],
+                "response_text": "- name: hardware_prefetching_support\n  description: Whether hardware prefetching is employed to reduce memory access latency\n  type: optional\n  constraints: None explicitly specified\n  keywords: [may]\n\n- name: prefetch_distance\n  description: How far ahead in the memory access stream prefetching occurs\n  type: implementation-specific\n  constraints: None explicitly specified\n  keywords: [may]\n\n- name: prefetch_aggressiveness\n  description: How aggressively the hardware issues prefetch requests (e.g., number of lines prefetched, frequency)\n  type: implementation-specific\n  constraints: None explicitly specified\n  keywords: [may]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "machine_timer_frequency",
+                    "machine_timer_resolution"
+                ],
+                "ground_truth": [
+                    "Timer frequency",
+                    "Timer resolution"
+                ],
+                "response_text": "- name: machine_timer_frequency\n  description: Frequency of the machine timer counter\n  type: implementation-specific\n  constraints: May vary\n  keywords: [may, vary]\n\n- name: machine_timer_resolution\n  description: Resolution of the machine timer counter\n  type: implementation-specific\n  constraints: May vary\n  keywords: [may, vary]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "cache_coherency_mechanism_support",
+                    "cache_coherency_protocol"
+                ],
+                "ground_truth": [
+                    "Cache coherency support",
+                    "Cache coherency protocol"
+                ],
+                "response_text": "- name: cache_coherency_mechanism_support\n  description: Whether a cache coherency mechanism is used in multi-agent systems\n  type: optional\n  constraints: Only applicable in systems with multiple agents\n  keywords: [may]\n\n- name: cache_coherency_protocol\n  description: Protocol used to maintain cache coherency between agents\n  type: implementation-specific\n  constraints: May differ between implementations\n  keywords: [may, differ between implementations]"
+            }
+        ]
+    },
+    "openai/gpt-4o-mini": {
+        "model": "openai/gpt-4o-mini",
+        "successful_tests": 20,
+        "total_tests": 20,
+        "success_rate": 100.0,
+        "avg_precision": 82.5,
+        "avg_recall": 62.08,
+        "avg_f1_score": 68.33,
+        "detailed_results": [
+            {
+                "success": true,
+                "extracted": [
+                    "multiplication_latency"
+                ],
+                "ground_truth": [
+                    "MUL instruction latency",
+                    "Number of execution cycles",
+                    "Operand width",
+                    "Pipeline structure"
+                ],
+                "response_text": "```yaml\n- name: multiplication_latency\n  description: Number of cycles required to complete a multiplication operation\n  type: implementation-specific\n  constraints: May vary across implementations, depends on operand width and pipeline structure\n  keywords: [may, vary, depend]\n```"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "branch_prediction_hardware",
+                    "branch_history_storage_size"
+                ],
+                "ground_truth": [
+                    "Branch prediction support",
+                    "Branch history storage size",
+                    "Branch history organization"
+                ],
+                "response_text": "```yaml\n- name: branch_prediction_hardware\n  description: Inclusion of branch prediction hardware to reduce control hazards\n  type: optional\n  constraints: None specified\n  keywords: [may]\n\n- name: branch_history_storage_size\n  description: Size of branch history storage in the processor\n  type: implementation-specific\n  constraints: May differ between designs\n  keywords: [may]\n```"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "cache_levels",
+                    "total_cache_capacity"
+                ],
+                "ground_truth": [
+                    "Number of cache levels",
+                    "Cache capacity"
+                ],
+                "response_text": "```yaml\n- name: cache_levels\n  description: Number of levels of cache in the system\n  type: optional\n  constraints: None specified\n  keywords: [may, one or more]\n\n- name: total_cache_capacity\n  description: Total capacity of the cache across implementations\n  type: implementation-specific\n  constraints: May vary across implementations\n  keywords: [may, vary]\n```"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "cache_block_size"
+                ],
+                "ground_truth": [
+                    "Cache block size"
+                ],
+                "response_text": "```yaml\n- name: cache_block_size\n  description: Size of a cache block in bytes\n  type: optional\n  constraints: Varies depending on memory hierarchy design\n  keywords: [may]\n```"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "translation_lookaside_buffer_type",
+                    "translation_lookaside_buffer_entry_count"
+                ],
+                "ground_truth": [
+                    "TLB organization",
+                    "Instruction TLB entries",
+                    "Data TLB entries"
+                ],
+                "response_text": "```yaml\n- name: translation_lookaside_buffer_type\n  description: Type of translation lookaside buffer (unified or split)\n  type: optional\n  constraints: None specified\n  keywords: [may]\n\n- name: translation_lookaside_buffer_entry_count\n  description: Number of entries in the translation lookaside buffer\n  type: optional\n  constraints: May differ between instruction and data accesses\n  keywords: [may]\n```"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "virtual_memory_support",
+                    "page_size",
+                    "page_table_depth"
+                ],
+                "ground_truth": [
+                    "Virtual memory support",
+                    "Page size",
+                    "Page table depth"
+                ],
+                "response_text": "```yaml\n- name: virtual_memory_support\n  description: Whether the implementation supports virtual memory\n  type: optional\n  constraints: None specified\n  keywords: [may, optionally]\n\n- name: page_size\n  description: Size of a memory page in bytes\n  type: implementation-specific\n  constraints: May vary across systems\n  keywords: [may, vary]\n\n- name: page_table_depth\n  description: Depth of the page table structure\n  type: implementation-specific\n  constraints: May vary across systems\n  keywords: [may, vary]\n```"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "interrupt_response_time"
+                ],
+                "ground_truth": [
+                    "Interrupt response latency"
+                ],
+                "response_text": "```yaml\n- name: interrupt_response_time\n  description: The delay between an interrupt request and the execution of its handler\n  type: optional\n  constraints: Software should not assume a fixed response time\n  keywords: [may, should]\n```"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "exception_support_type",
+                    "exception_ordering_guarantees"
+                ],
+                "ground_truth": [
+                    "Exception precision",
+                    "Exception ordering guarantees"
+                ],
+                "response_text": "```yaml\n- name: exception_support_type\n  description: Type of exception support (precise or imprecise)\n  type: optional\n  constraints: None specified\n  keywords: [may, support]\n\n- name: exception_ordering_guarantees\n  description: Guarantees provided for exception ordering\n  type: implementation-specific\n  constraints: May differ between implementations\n  keywords: [may, guarantees]\n```"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "atomic_read_modify_write_support",
+                    "atomicity_memory_region"
+                ],
+                "ground_truth": [
+                    "Atomic instruction support",
+                    "Atomicity granularity"
+                ],
+                "response_text": "```yaml\n- name: atomic_read_modify_write_support\n  description: Whether atomic read-modify-write instructions are supported\n  type: optional\n  constraints: None specified\n  keywords: [may, supported]\n\n- name: atomicity_memory_region\n  description: Maximum memory region over which atomicity is guaranteed\n  type: implementation-specific\n  constraints: May vary\n  keywords: [may, maximum, guaranteed]\n```"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "memory_ordering_rules"
+                ],
+                "ground_truth": [
+                    "Memory ordering model",
+                    "Ordering guarantees"
+                ],
+                "response_text": "```yaml\n- name: memory_ordering_rules\n  description: Enforced ordering rules of the memory system\n  type: optional\n  constraints: May be stronger than base ISA, behavior may vary\n  keywords: [may, stronger, vary]\n```"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "floating_point_unit_presence",
+                    "floating_point_precision_support",
+                    "floating_point_rounding_mode_support"
+                ],
+                "ground_truth": [
+                    "Floating-point unit presence",
+                    "Floating-point precision",
+                    "Rounding modes"
+                ],
+                "response_text": "```yaml\n- name: floating_point_unit_presence\n  description: Whether a floating-point unit is present in the implementation\n  type: optional\n  constraints: None specified\n  keywords: [optional, may]\n\n- name: floating_point_precision_support\n  description: Supported floating-point precisions in the implementation\n  type: implementation-specific\n  constraints: May differ between implementations\n  keywords: [may]\n\n- name: floating_point_rounding_mode_support\n  description: Supported rounding modes for floating-point operations\n  type: implementation-specific\n  constraints: May differ between implementations\n  keywords: [may]\n```"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "csr_accessibility"
+                ],
+                "ground_truth": [
+                    "CSR accessibility",
+                    "Privilege-level access rules"
+                ],
+                "response_text": "```yaml\n- name: csr_accessibility\n  description: Accessibility of control and status registers across privilege modes\n  type: implementation-specific\n  constraints: Set of CSRs may vary by privilege level\n  keywords: [may, accessible, vary]\n```"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "low_power_operating_states",
+                    "transition_latency"
+                ],
+                "ground_truth": [
+                    "Low-power state support",
+                    "Number of power states",
+                    "Power state transition latency"
+                ],
+                "response_text": "```yaml\n- name: low_power_operating_states\n  description: Number of low-power operating states provided by the processor\n  type: implementation-specific\n  constraints: May differ between designs\n  keywords: [may]\n\n- name: transition_latency\n  description: Latency for transitioning between operating states\n  type: implementation-specific\n  constraints: May differ between designs\n  keywords: [may]\n```"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "instruction_cache_replacement_behavior"
+                ],
+                "ground_truth": [
+                    "Instruction cache replacement policy"
+                ],
+                "response_text": "```yaml\n- name: instruction_cache_replacement_behavior\n  description: The behavior of the instruction cache replacement policy\n  type: implementation-defined\n  constraints: None specified\n  keywords: [chosen by the design, may]\n```"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "unaligned_memory_access_support"
+                ],
+                "ground_truth": [
+                    "Unaligned access support",
+                    "Unaligned access penalty"
+                ],
+                "response_text": "```yaml\n- name: unaligned_memory_access_support\n  description: Whether unaligned memory accesses are supported\n  type: optional\n  constraints: Performance impact may vary across implementations\n  keywords: [may, supported, performance impact]\n```"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "vector_register_length"
+                ],
+                "ground_truth": [
+                    "Vector register length",
+                    "Supported vector lengths"
+                ],
+                "response_text": "```yaml\n- name: vector_register_length\n  description: Maximum length of vector registers supported by an implementation\n  type: implementation-specific\n  constraints: Multiple vector lengths may be supported\n  keywords: [may, supported]\n```"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "debug_mode_entry",
+                    "hardware_breakpoint_count"
+                ],
+                "ground_truth": [
+                    "Debug entry mechanisms",
+                    "Number of hardware breakpoints"
+                ],
+                "response_text": "```yaml\n- name: debug_mode_entry\n  description: Method of entering debug mode through external or internal triggers\n  type: optional\n  constraints: None specified\n  keywords: [may]\n\n- name: hardware_breakpoint_count\n  description: Number of supported hardware breakpoints\n  type: implementation-specific\n  constraints: May differ between implementations\n  keywords: [may]\n```"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "hardware_prefetching"
+                ],
+                "ground_truth": [
+                    "Hardware prefetching support",
+                    "Prefetch distance",
+                    "Prefetch aggressiveness"
+                ],
+                "response_text": "```yaml\n- name: hardware_prefetching\n  description: Whether hardware prefetching is employed to reduce memory access latency\n  type: optional\n  constraints: Distance and aggressiveness may vary\n  keywords: [may, employed, vary]\n```"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "machine_timer_frequency",
+                    "machine_timer_resolution"
+                ],
+                "ground_truth": [
+                    "Timer frequency",
+                    "Timer resolution"
+                ],
+                "response_text": "```yaml\n- name: machine_timer_frequency\n  description: Frequency of the machine timer counter\n  type: implementation-specific\n  constraints: May vary\n  keywords: [may, vary]\n\n- name: machine_timer_resolution\n  description: Resolution of the machine timer counter\n  type: implementation-specific\n  constraints: May vary\n  keywords: [may, vary]\n```"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "cache_coherency_mechanism",
+                    "cache_coherency_protocol"
+                ],
+                "ground_truth": [
+                    "Cache coherency support",
+                    "Cache coherency protocol"
+                ],
+                "response_text": "```yaml\n- name: cache_coherency_mechanism\n  description: Whether a cache coherency mechanism is used in systems with multiple agents\n  type: optional\n  constraints: None specified\n  keywords: [may]\n\n- name: cache_coherency_protocol\n  description: The protocol used to maintain cache coherency\n  type: implementation-specific\n  constraints: May differ between implementations\n  keywords: [may]\n```"
+            }
+        ]
+    },
+    "openai/gpt-5.1-codex-mini": {
+        "model": "openai/gpt-5.1-codex-mini",
+        "successful_tests": 20,
+        "total_tests": 20,
+        "success_rate": 100.0,
+        "avg_precision": 77.5,
+        "avg_recall": 63.75,
+        "avg_f1_score": 68.67,
+        "detailed_results": [
+            {
+                "success": true,
+                "extracted": [
+                    "mul_operation_cycle_count",
+                    "mul_instruction_latency"
+                ],
+                "ground_truth": [
+                    "MUL instruction latency",
+                    "Number of execution cycles",
+                    "Operand width",
+                    "Pipeline structure"
+                ],
+                "response_text": "- name: mul_operation_cycle_count\n  description: Number of cycles required to complete a multiplication operation\n  type: implementation-specific\n  constraints: May vary across implementations\n  keywords: [may, vary, implementations]\n\n- name: mul_instruction_latency\n  description: Latency of the MUL instruction based on operand width and pipeline structure\n  type: implementation-specific\n  constraints: May depend on operand width and pipeline structure\n  keywords: [may, depend]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "branch_prediction_hardware_support",
+                    "branch_history_storage_configuration"
+                ],
+                "ground_truth": [
+                    "Branch prediction support",
+                    "Branch history storage size",
+                    "Branch history organization"
+                ],
+                "response_text": "- name: branch_prediction_hardware_support\n  description: Whether branch prediction hardware is included to reduce control hazards\n  type: optional\n  constraints: None\n  keywords: [may, reduce, to]\n- name: branch_history_storage_configuration\n  description: Size and organization of branch history storage\n  type: implementation-specific\n  constraints: May differ between designs\n  keywords: [may, may differ]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "cache_level_count",
+                    "total_cache_capacity"
+                ],
+                "ground_truth": [
+                    "Number of cache levels",
+                    "Cache capacity"
+                ],
+                "response_text": "- name: cache_level_count\n  description: Number of cache levels included in the system\n  type: optional\n  constraints: None specified\n  keywords: [may, optional]\n- name: total_cache_capacity\n  description: Total cache storage capacity provided by the system\n  type: implementation-defined\n  constraints: May vary across implementations\n  keywords: [may, implementation-defined]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "cache_block_size"
+                ],
+                "ground_truth": [
+                    "Cache block size"
+                ],
+                "response_text": "- name: cache_block_size\n  description: Size of a cache block in bytes\n  type: implementation-specific\n  constraints: Varies depending on the memory hierarchy design\n  keywords: [may]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "tlb_organization",
+                    "tlb_entry_count_difference"
+                ],
+                "ground_truth": [
+                    "TLB organization",
+                    "Instruction TLB entries",
+                    "Data TLB entries"
+                ],
+                "response_text": "- name: tlb_organization\n  description: Whether the translation lookaside buffer is unified or split between instruction and data accesses\n  type: implementation-specific\n  constraints: May be unified or split\n  keywords: [may]\n\n- name: tlb_entry_count_difference\n  description: Variation in the number of entries between instruction and data TLBs\n  type: implementation-specific\n  constraints: Number of entries may differ between instruction and data accesses\n  keywords: [may]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "virtual_memory_support",
+                    "page_size",
+                    "page_table_depth"
+                ],
+                "ground_truth": [
+                    "Virtual memory support",
+                    "Page size",
+                    "Page table depth"
+                ],
+                "response_text": "- name: virtual_memory_support\n  description: Whether virtual memory is supported by the implementation\n  type: optional\n  constraints: None\n  keywords: [may, optionally, support]\n\n- name: page_size\n  description: Size of virtual memory pages\n  type: implementation-specific\n  constraints: Varies across systems\n  keywords: [may, vary, across systems]\n\n- name: page_table_depth\n  description: Depth of the virtual memory page table hierarchy\n  type: implementation-specific\n  constraints: Varies across systems\n  keywords: [may, vary, across systems]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "interrupt_response_latency"
+                ],
+                "ground_truth": [
+                    "Interrupt response latency"
+                ],
+                "response_text": "- name: interrupt_response_latency\n  description: Delay between an interrupt request and the execution of its handler\n  type: implementation-specific\n  constraints: Software should not assume a fixed interrupt response time\n  keywords: [may, should]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "exception_precision_support"
+                ],
+                "ground_truth": [
+                    "Exception precision",
+                    "Exception ordering guarantees"
+                ],
+                "response_text": "- name: exception_precision_support\n  description: Whether the implementation supports precise or imprecise exceptions and their ordering guarantees\n  type: implementation-specific\n  constraints: Guarantees for exception ordering may differ by implementation\n  keywords: [may]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "atomic_rmw_instruction_support",
+                    "atomicity_guaranteed_memory_region"
+                ],
+                "ground_truth": [
+                    "Atomic instruction support",
+                    "Atomicity granularity"
+                ],
+                "response_text": "- name: atomic_rmw_instruction_support\n  description: Whether atomic read-modify-write instructions are supported\n  type: optional\n  constraints: Support may vary across implementations\n  keywords: [may, supported]\n\n- name: atomicity_guaranteed_memory_region\n  description: Maximum memory region over which atomicity is guaranteed\n  type: implementation-specific\n  constraints: Extent may vary by implementation\n  keywords: [may, vary]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "memory_system_ordering_strength"
+                ],
+                "ground_truth": [
+                    "Memory ordering model",
+                    "Ordering guarantees"
+                ],
+                "response_text": "- name: memory_system_ordering_strength\n  description: Degree to which the memory system enforces ordering rules relative to the base ISA\n  type: optional\n  constraints: Exact ordering behavior may vary and may be stronger than the base ISA requirements\n  keywords: [may, \"may vary\"]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "floating_point_unit_presence",
+                    "floating_point_precision_and_rounding_modes"
+                ],
+                "ground_truth": [
+                    "Floating-point unit presence",
+                    "Floating-point precision",
+                    "Rounding modes"
+                ],
+                "response_text": "- name: floating_point_unit_presence\n  description: Whether a floating-point unit is present in the implementation\n  type: optional\n  constraints: Implementation may choose to include or omit the FPU\n  keywords: [may, optionally]\n\n- name: floating_point_precision_and_rounding_modes\n  description: The supported floating-point precisions and rounding modes\n  type: implementation-specific\n  constraints: Supported precisions and rounding modes may differ between implementations\n  keywords: [may]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "csr_access_privilege_modes"
+                ],
+                "ground_truth": [
+                    "CSR accessibility",
+                    "Privilege-level access rules"
+                ],
+                "response_text": "- name: csr_access_privilege_modes\n  description: Privilege modes from which each CSR is accessible\n  type: implementation-specific\n  constraints: Available CSR sets may differ per privilege level\n  keywords: [may, vary]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "low_power_operating_state_support",
+                    "low_power_state_configuration"
+                ],
+                "ground_truth": [
+                    "Low-power state support",
+                    "Number of power states",
+                    "Power state transition latency"
+                ],
+                "response_text": "- name: low_power_operating_state_support\n  description: Whether the processor provides low-power operating states\n  type: optional\n  constraints: None specified\n  keywords: [may, optional]\n\n- name: low_power_state_configuration\n  description: Details of low-power state count and transition latency\n  type: implementation-specific\n  constraints: May differ between designs\n  keywords: [may, implementation-specific]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "instruction_cache_replacement_policy"
+                ],
+                "ground_truth": [
+                    "Instruction cache replacement policy"
+                ],
+                "response_text": "- name: instruction_cache_replacement_policy\n  description: Policy used for instruction cache line replacement\n  type: implementation-specific\n  constraints: Policies such as random or least-recently-used replacement may be employed\n  keywords: [chosen by design, may]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "unaligned_memory_access_support"
+                ],
+                "ground_truth": [
+                    "Unaligned access support",
+                    "Unaligned access penalty"
+                ],
+                "response_text": "- name: unaligned_memory_access_support\n  description: Whether unaligned memory accesses are supported and their performance impact\n  type: optional\n  constraints: Performance impact may vary across implementations\n  keywords: [may, vary]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "vector_register_max_length"
+                ],
+                "ground_truth": [
+                    "Vector register length",
+                    "Supported vector lengths"
+                ],
+                "response_text": "- name: vector_register_max_length\n  description: Maximum supported length of vector registers\n  type: implementation-specific\n  constraints: Implementation may support multiple vector lengths\n  keywords: [may, supported]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "hardware_breakpoint_count",
+                    "debug_mode_entry_trigger_sources"
+                ],
+                "ground_truth": [
+                    "Debug entry mechanisms",
+                    "Number of hardware breakpoints"
+                ],
+                "response_text": "- name: hardware_breakpoint_count\n  description: Number of hardware breakpoints the implementation supports\n  type: implementation-specific\n  constraints: Implementation may provide differing counts\n  keywords: [may, may]\n\n- name: debug_mode_entry_trigger_sources\n  description: Source types (external or internal) that can enter debug mode\n  type: implementation-specific\n  constraints: Implementation may allow external, internal, or both trigger types\n  keywords: [may, may]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "hardware_prefetching_support",
+                    "hardware_prefetching_distance_and_aggressiveness"
+                ],
+                "ground_truth": [
+                    "Hardware prefetching support",
+                    "Prefetch distance",
+                    "Prefetch aggressiveness"
+                ],
+                "response_text": "- name: hardware_prefetching_support\n  description: Whether hardware prefetching is employed to reduce memory access latency\n  type: optional\n  constraints: None\n  keywords: [may]\n\n- name: hardware_prefetching_distance_and_aggressiveness\n  description: The distance ahead of accesses and aggressiveness level of hardware prefetching\n  type: implementation-specific\n  constraints: May vary by implementation\n  keywords: [may, vary]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "machine_timer_frequency",
+                    "machine_timer_resolution"
+                ],
+                "ground_truth": [
+                    "Timer frequency",
+                    "Timer resolution"
+                ],
+                "response_text": "- name: machine_timer_frequency\n  description: Frequency at which the machine timer counter increments\n  type: implementation-specific\n  constraints: Frequency varies by implementation\n  keywords: [may, vary]\n- name: machine_timer_resolution\n  description: Resolution of the machine timer counter\n  type: implementation-specific\n  constraints: Resolution varies by implementation\n  keywords: [may, vary]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "cache_coherency_mechanism_use",
+                    "cache_coherency_protocol_choice"
+                ],
+                "ground_truth": [
+                    "Cache coherency support",
+                    "Cache coherency protocol"
+                ],
+                "response_text": "- name: cache_coherency_mechanism_use\n  description: Whether a cache coherency mechanism is used in systems with multiple agents\n  type: optional\n  constraints: Applies to systems with multiple agents\n  keywords: [may, may]\n\n- name: cache_coherency_protocol_choice\n  description: Choice of protocol used to maintain cache coherency\n  type: implementation-specific\n  constraints: Protocol may differ between implementations\n  keywords: [may, may]"
+            }
+        ]
+    },
+    "anthropic/claude-3-haiku": {
+        "model": "anthropic/claude-3-haiku",
+        "successful_tests": 20,
+        "total_tests": 20,
+        "success_rate": 100.0,
+        "avg_precision": 67.5,
+        "avg_recall": 52.08,
+        "avg_f1_score": 56.83,
+        "detailed_results": [
+            {
+                "success": true,
+                "extracted": [
+                    "mul_instruction_latency"
+                ],
+                "ground_truth": [
+                    "MUL instruction latency",
+                    "Number of execution cycles",
+                    "Operand width",
+                    "Pipeline structure"
+                ],
+                "response_text": "- name: mul_instruction_latency\n  description: Latency of the MUL instruction\n  type: implementation-specific\n  constraints: May vary based on operand width and pipeline structure\n  keywords: [may, vary, depend]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "branch_prediction_hardware",
+                    "branch_history_storage_size",
+                    "branch_history_storage_organization"
+                ],
+                "ground_truth": [
+                    "Branch prediction support",
+                    "Branch history storage size",
+                    "Branch history organization"
+                ],
+                "response_text": "- name: branch_prediction_hardware\n  description: Whether the processor includes branch prediction hardware\n  type: optional\n  constraints: None\n  keywords: [may, include]\n\n- name: branch_history_storage_size\n  description: Size of the branch history storage\n  type: implementation-specific\n  constraints: None\n  keywords: [may, differ]\n\n- name: branch_history_storage_organization\n  description: Organization of the branch history storage\n  type: implementation-specific\n  constraints: None\n  keywords: [may, differ]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "cache_levels",
+                    "total_cache_capacity"
+                ],
+                "ground_truth": [
+                    "Number of cache levels",
+                    "Cache capacity"
+                ],
+                "response_text": "- name: cache_levels\n  description: Number of cache levels in the system\n  type: configurable\n  constraints: \n  keywords: [may]\n\n- name: total_cache_capacity\n  description: Total cache capacity across all levels\n  type: implementation-specific\n  constraints:\n  keywords: [may]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "cache_block_size"
+                ],
+                "ground_truth": [
+                    "Cache block size"
+                ],
+                "response_text": "- name: cache_block_size\n  description: Size of a cache block in bytes\n  type: implementation-specific\n  constraints: None\n  keywords: [may]"
+            },
+            {
+                "success": true,
+                "extracted": [],
+                "ground_truth": [
+                    "TLB organization",
+                    "Instruction TLB entries",
+                    "Data TLB entries"
+                ],
+                "response_text": "Here is the YAML output for the given specification text:\n\n- name: tlb_type\n  description: Whether the TLB is unified or split between instruction and data accesses\n  type: configurable\n  constraints: None\n  keywords: [may]\n\n- name: tlb_entry_count\n  description: Number of entries in the TLB\n  type: configurable\n  constraints: May differ between instruction and data TLBs\n  keywords: [may]"
+            },
+            {
+                "success": true,
+                "extracted": [],
+                "ground_truth": [
+                    "Virtual memory support",
+                    "Page size",
+                    "Page table depth"
+                ],
+                "response_text": "Here is the YAML output for the given specification text:\n\n- name: virtual_memory_support\n  description: Whether virtual memory is supported\n  type: optional\n  constraints: None\n  keywords: [may, optional]\n\n- name: page_size\n  description: Size of a virtual memory page\n  type: configurable\n  constraints: May vary across systems\n  keywords: [may, vary]\n\n- name: page_table_depth\n  description: Depth of the page table hierarchy\n  type: configurable\n  constraints: May vary across systems\n  keywords: [may, vary]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "interrupt_response_time"
+                ],
+                "ground_truth": [
+                    "Interrupt response latency"
+                ],
+                "response_text": "- name: interrupt_response_time\n  description: Delay between interrupt request and handler execution\n  type: implementation-specific\n  constraints: Software should not assume fixed response time\n  keywords: [may, should]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "exception_model"
+                ],
+                "ground_truth": [
+                    "Exception precision",
+                    "Exception ordering guarantees"
+                ],
+                "response_text": "```yaml\n- name: exception_model\n  description: The exception model supported by the implementation\n  type: optional\n  constraints: May support precise or imprecise exceptions, exception ordering guarantees may differ\n  keywords: [may, may differ]\n```"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "atomic_read_modify_write_support"
+                ],
+                "ground_truth": [
+                    "Atomic instruction support",
+                    "Atomicity granularity"
+                ],
+                "response_text": "- name: atomic_read_modify_write_support\n  description: Whether atomic read-modify-write instructions are supported\n  type: optional\n  constraints: If supported, the maximum memory region over which atomicity is guaranteed may vary\n  keywords: [may, vary]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "memory_ordering_behavior"
+                ],
+                "ground_truth": [
+                    "Memory ordering model",
+                    "Ordering guarantees"
+                ],
+                "response_text": "- name: memory_ordering_behavior\n  description: Strength of memory ordering rules enforced by the memory system\n  type: implementation-specific\n  constraints: May be stronger than required by the base ISA\n  keywords: [may, vary]"
+            },
+            {
+                "success": true,
+                "extracted": [],
+                "ground_truth": [
+                    "Floating-point unit presence",
+                    "Floating-point precision",
+                    "Rounding modes"
+                ],
+                "response_text": "Here is the YAML output for the given specification text:\n\n- name: floating_point_unit_presence\n  description: Whether a floating-point unit is present\n  type: optional\n  constraints: None\n  keywords: [may, optional]\n\n- name: floating_point_precision_support\n  description: Supported floating-point precisions\n  type: implementation-specific\n  constraints: None\n  keywords: [may, differ]\n\n- name: floating_point_rounding_mode_support\n  description: Supported floating-point rounding modes\n  type: implementation-specific\n  constraints: None\n  keywords: [may, differ]"
+            },
+            {
+                "success": true,
+                "extracted": [],
+                "ground_truth": [
+                    "CSR accessibility",
+                    "Privilege-level access rules"
+                ],
+                "response_text": "Here is the YAML output for the given specification text:\n\n- name: csr_accessibility\n  description: Which privilege modes can access certain control and status registers\n  type: implementation-specific\n  constraints: The set of CSRs available at each privilege level may vary\n  keywords: [may, vary]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "low_power_operating_states_count",
+                    "low_power_state_transition_latency"
+                ],
+                "ground_truth": [
+                    "Low-power state support",
+                    "Number of power states",
+                    "Power state transition latency"
+                ],
+                "response_text": "- name: low_power_operating_states_count\n  description: Number of low-power operating states provided by the processor\n  type: implementation-specific\n  constraints: None\n  keywords: [may, differ]\n\n- name: low_power_state_transition_latency\n  description: Latency for transitioning between low-power operating states\n  type: implementation-specific\n  constraints: None\n  keywords: [may, differ]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "instruction_cache_replacement_policy"
+                ],
+                "ground_truth": [
+                    "Instruction cache replacement policy"
+                ],
+                "response_text": "- name: instruction_cache_replacement_policy\n  description: Policy used for replacing cache lines in the instruction cache\n  type: configurable\n  constraints: May use random or least-recently-used replacement\n  keywords: [may, could]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "unaligned_memory_access_support"
+                ],
+                "ground_truth": [
+                    "Unaligned access support",
+                    "Unaligned access penalty"
+                ],
+                "response_text": "- name: unaligned_memory_access_support\n  description: Whether unaligned memory accesses are supported\n  type: optional\n  constraints: Performance impact may vary across implementations\n  keywords: [may, may]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "vector_register_length"
+                ],
+                "ground_truth": [
+                    "Vector register length",
+                    "Supported vector lengths"
+                ],
+                "response_text": "- name: vector_register_length\n  description: Maximum length of vector registers\n  type: configurable\n  constraints: Multiple vector lengths may be supported\n  keywords: [may, vary, supported]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "debug_mode_entry",
+                    "hardware_breakpoint_count"
+                ],
+                "ground_truth": [
+                    "Debug entry mechanisms",
+                    "Number of hardware breakpoints"
+                ],
+                "response_text": "- name: debug_mode_entry\n  description: Triggers that can be used to enter debug mode\n  type: implementation-specific\n  constraints: Can be external or internal triggers\n  keywords: [may, differ]\n\n- name: hardware_breakpoint_count\n  description: Number of supported hardware breakpoints\n  type: implementation-specific\n  constraints: None specified\n  keywords: [may, differ]"
+            },
+            {
+                "success": true,
+                "extracted": [],
+                "ground_truth": [
+                    "Hardware prefetching support",
+                    "Prefetch distance",
+                    "Prefetch aggressiveness"
+                ],
+                "response_text": "Here is the YAML output for the given specification text:\n\n- name: hardware_prefetching\n  description: Whether hardware prefetching is employed to reduce memory access latency\n  type: optional\n  constraints: If employed, the distance and aggressiveness of prefetching may vary\n  keywords: [may, vary]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "machine_timer_frequency",
+                    "machine_timer_resolution"
+                ],
+                "ground_truth": [
+                    "Timer frequency",
+                    "Timer resolution"
+                ],
+                "response_text": "- name: machine_timer_frequency\n  description: Frequency of the machine timer counter\n  type: implementation-specific\n  constraints: None\n  keywords: [may, vary]\n\n- name: machine_timer_resolution\n  description: Resolution of the machine timer counter\n  type: implementation-specific\n  constraints: None\n  keywords: [may, vary]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "cache_coherency_mechanism",
+                    "cache_coherency_protocol"
+                ],
+                "ground_truth": [
+                    "Cache coherency support",
+                    "Cache coherency protocol"
+                ],
+                "response_text": "- name: cache_coherency_mechanism\n  description: Whether a cache coherency mechanism is used in systems with multiple agents\n  type: optional\n  constraints: If used, the protocol may differ between implementations\n  keywords: [may]\n\n- name: cache_coherency_protocol\n  description: The protocol used to maintain cache coherency\n  type: implementation-specific\n  constraints: May differ between implementations\n  keywords: [may, differ]"
+            }
+        ]
+    },
+    "google/gemini-3-flash-preview": {
+        "model": "google/gemini-3-flash-preview",
+        "successful_tests": 20,
+        "total_tests": 20,
+        "success_rate": 100.0,
+        "avg_precision": 87.5,
+        "avg_recall": 82.92,
+        "avg_f1_score": 84.00,
+        "detailed_results": [
+            {
+                "success": true,
+                "extracted": [
+                    "multiplication_latency"
+                ],
+                "ground_truth": [
+                    "MUL instruction latency",
+                    "Number of execution cycles",
+                    "Operand width",
+                    "Pipeline structure"
+                ],
+                "response_text": "- name: multiplication_latency\n  description: Number of cycles required to complete a multiplication operation\n  type: implementation-specific\n  constraints: May depend on operand width and pipeline structure\n  keywords: [may, vary]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "branch_prediction_hardware_support",
+                    "branch_history_storage_size",
+                    "branch_history_storage_organization"
+                ],
+                "ground_truth": [
+                    "Branch prediction support",
+                    "Branch history storage size",
+                    "Branch history organization"
+                ],
+                "response_text": "- name: branch_prediction_hardware_support\n  description: Inclusion of branch prediction hardware to reduce control hazards\n  type: optional\n  constraints: None mentioned\n  keywords: [may]\n\n- name: branch_history_storage_size\n  description: The capacity of the storage used for branch history\n  type: implementation-specific\n  constraints: None mentioned\n  keywords: [may]\n\n- name: branch_history_storage_organization\n  description: The structural organization of the branch history storage\n  type: implementation-specific\n  constraints: None mentioned\n  keywords: [may]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "cache_levels_count",
+                    "total_cache_capacity"
+                ],
+                "ground_truth": [
+                    "Number of cache levels",
+                    "Cache capacity"
+                ],
+                "response_text": "- name: cache_levels_count\n  description: The number of cache levels present in the system\n  type: optional\n  constraints: One or more levels\n  keywords: [may]\n\n- name: total_cache_capacity\n  description: The aggregate storage capacity of the cache system\n  type: implementation-specific\n  constraints: May vary across implementations\n  keywords: [may]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "cache_block_size"
+                ],
+                "ground_truth": [
+                    "Cache block size"
+                ],
+                "response_text": "- name: cache_block_size\n  description: Size of a cache block representing contiguous regions of memory\n  type: implementation-specific\n  constraints: May vary depending on the memory hierarchy design\n  keywords: [may]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "tlb_organization",
+                    "tlb_entry_count"
+                ],
+                "ground_truth": [
+                    "TLB organization",
+                    "Instruction TLB entries",
+                    "Data TLB entries"
+                ],
+                "response_text": "- name: tlb_organization\n  description: Whether the translation lookaside buffer is unified or split between instruction and data accesses\n  type: optional\n  constraints: None\n  keywords: [may]\n\n- name: tlb_entry_count\n  description: The number of entries in the instruction, data, or unified TLB\n  type: implementation-specific\n  constraints: Number of entries may differ between instruction and data TLBs\n  keywords: [may]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "virtual_memory_support",
+                    "page_size",
+                    "page_table_depth"
+                ],
+                "ground_truth": [
+                    "Virtual memory support",
+                    "Page size",
+                    "Page table depth"
+                ],
+                "response_text": "- name: virtual_memory_support\n  description: Whether the implementation supports virtual memory\n  type: optional\n  constraints: None\n  keywords: [may, optionally]\n\n- name: page_size\n  description: The size of a virtual memory page\n  type: implementation-specific\n  constraints: May vary across systems\n  keywords: [may]\n\n- name: page_table_depth\n  description: The number of levels in the page table hierarchy\n  type: implementation-specific\n  constraints: May vary across systems\n  keywords: [may]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "interrupt_response_time"
+                ],
+                "ground_truth": [
+                    "Interrupt response latency"
+                ],
+                "response_text": "- name: interrupt_response_time\n  description: The duration of the delay between an interrupt request and the execution of its handler\n  type: implementation-specific\n  constraints: Software should not assume a fixed value\n  keywords: [may, should]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "exception_precision_support",
+                    "exception_ordering_guarantees"
+                ],
+                "ground_truth": [
+                    "Exception precision",
+                    "Exception ordering guarantees"
+                ],
+                "response_text": "- name: exception_precision_support\n  description: Whether the implementation supports precise or imprecise exceptions\n  type: optional\n  constraints: None mentioned\n  keywords: [may]\n\n- name: exception_ordering_guarantees\n  description: The specific guarantees provided for the ordering of exceptions\n  type: implementation-specific\n  constraints: May differ between implementations\n  keywords: [may]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "atomic_rmw_instruction_support",
+                    "atomic_guarantee_region_size"
+                ],
+                "ground_truth": [
+                    "Atomic instruction support",
+                    "Atomicity granularity"
+                ],
+                "response_text": "```yaml\n- name: atomic_rmw_instruction_support\n  description: Support for atomic read-modify-write instructions\n  type: optional\n  constraints: None mentioned\n  keywords: [may]\n\n- name: atomic_guarantee_region_size\n  description: The maximum memory region over which atomicity is guaranteed\n  type: implementation-specific\n  constraints: May vary between implementations\n  keywords: [may]\n```"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "memory_ordering_strength",
+                    "memory_ordering_behavior"
+                ],
+                "ground_truth": [
+                    "Memory ordering model",
+                    "Ordering guarantees"
+                ],
+                "response_text": "- name: memory_ordering_strength\n  description: Whether the memory system enforces ordering rules stronger than the base ISA requirements\n  type: implementation-specific\n  constraints: Must at least meet base ISA requirements\n  keywords: [may]\n\n- name: memory_ordering_behavior\n  description: The exact behavior and consistency model of memory ordering\n  type: implementation-specific\n  constraints: none\n  keywords: [may, vary]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "floating_point_unit_presence",
+                    "supported_floating_point_precisions",
+                    "supported_rounding_modes"
+                ],
+                "ground_truth": [
+                    "Floating-point unit presence",
+                    "Floating-point precision",
+                    "Rounding modes"
+                ],
+                "response_text": "- name: floating_point_unit_presence\n  description: Whether a floating-point unit (FPU) is included in the implementation\n  type: optional\n  constraints: None mentioned\n  keywords: [may, optionally]\n\n- name: supported_floating_point_precisions\n  description: The set of floating-point precision levels (e.g., single, double, quad) supported by the hardware\n  type: implementation-specific\n  constraints: May differ between implementations\n  keywords: [may]\n\n- name: supported_rounding_modes\n  description: The set of floating-point rounding modes supported by the hardware\n  type: implementation-specific\n  constraints: May differ between implementations\n  keywords: [may]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "csr_privilege_mode_accessibility",
+                    "csr_set_per_privilege_level"
+                ],
+                "ground_truth": [
+                    "CSR accessibility",
+                    "Privilege-level access rules"
+                ],
+                "response_text": "- name: csr_privilege_mode_accessibility\n  description: Accessibility of specific control and status registers across different privilege modes\n  type: implementation-specific\n  constraints: None mentioned\n  keywords: [may]\n\n- name: csr_set_per_privilege_level\n  description: The specific set of CSRs available at each privilege level\n  type: implementation-specific\n  constraints: None mentioned\n  keywords: [may, vary]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "low_power_operating_states_support",
+                    "low_power_operating_states_count",
+                    "low_power_state_transition_latency"
+                ],
+                "ground_truth": [
+                    "Low-power state support",
+                    "Number of power states",
+                    "Power state transition latency"
+                ],
+                "response_text": "- name: low_power_operating_states_support\n  description: Whether the processor provides low-power operating states\n  type: optional\n  constraints: null\n  keywords: [may]\n\n- name: low_power_operating_states_count\n  description: The number of available low-power operating states\n  type: implementation-specific\n  constraints: null\n  keywords: [may, differ]\n\n- name: low_power_state_transition_latency\n  description: Time required to transition between operating states\n  type: implementation-specific\n  constraints: null\n  keywords: [may, differ]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "instruction_cache_replacement_policy"
+                ],
+                "ground_truth": [
+                    "Instruction cache replacement policy"
+                ],
+                "response_text": "- name: instruction_cache_replacement_policy\n  description: The algorithm used to select which instruction cache line to replace\n  type: implementation-defined\n  constraints: Policies such as random or least-recently-used (LRU) may be employed\n  keywords: [chosen by the design, may]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "unaligned_memory_access_support",
+                    "unaligned_memory_access_performance"
+                ],
+                "ground_truth": [
+                    "Unaligned access support",
+                    "Unaligned access penalty"
+                ],
+                "response_text": "- name: unaligned_memory_access_support\n  description: Whether the implementation supports memory accesses that are not aligned to their natural boundaries\n  type: optional\n  constraints: None mentioned\n  keywords: [may]\n\n- name: unaligned_memory_access_performance\n  description: The performance impact or efficiency of executing unaligned memory accesses\n  type: implementation-specific\n  constraints: May vary across implementations\n  keywords: [may, vary]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "max_vector_register_length",
+                    "supported_vector_lengths"
+                ],
+                "ground_truth": [
+                    "Vector register length",
+                    "Supported vector lengths"
+                ],
+                "response_text": "- name: max_vector_register_length\n  description: The maximum length of a vector register (VLEN)\n  type: implementation-specific\n  constraints: None mentioned\n  keywords: [may]\n\n- name: supported_vector_lengths\n  description: The set of vector lengths supported by the implementation\n  type: configurable\n  constraints: Multiple lengths may be supported\n  keywords: [may]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "debug_mode_entry_triggers",
+                    "hardware_breakpoint_count"
+                ],
+                "ground_truth": [
+                    "Debug entry mechanisms",
+                    "Number of hardware breakpoints"
+                ],
+                "response_text": "- name: debug_mode_entry_triggers\n  description: Methods allowed for entering debug mode (external or internal)\n  type: optional\n  constraints: none\n  keywords: [may]\n\n- name: hardware_breakpoint_count\n  description: The number of hardware breakpoints supported by the implementation\n  type: implementation-specific\n  constraints: none\n  keywords: [may, differ]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "hardware_prefetching_support",
+                    "prefetch_distance",
+                    "prefetch_aggressiveness"
+                ],
+                "ground_truth": [
+                    "Hardware prefetching support",
+                    "Prefetch distance",
+                    "Prefetch aggressiveness"
+                ],
+                "response_text": "- name: hardware_prefetching_support\n  description: Whether hardware prefetching is employed to reduce memory access latency\n  type: optional\n  constraints: None mentioned\n  keywords: [may]\n\n- name: prefetch_distance\n  description: The lookahead distance of the hardware prefetcher\n  type: implementation-specific\n  constraints: May vary\n  keywords: [may]\n\n- name: prefetch_aggressiveness\n  description: The degree of aggressiveness of the prefetching mechanism\n  type: implementation-specific\n  constraints: May vary\n  keywords: [may]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "machine_timer_frequency",
+                    "machine_timer_resolution"
+                ],
+                "ground_truth": [
+                    "Timer frequency",
+                    "Timer resolution"
+                ],
+                "response_text": "- name: machine_timer_frequency\n  description: The frequency at which the machine timer counter increments\n  type: implementation-specific\n  constraints: None mentioned\n  keywords: [may]\n\n- name: machine_timer_resolution\n  description: The resolution of the machine timer counter\n  type: implementation-specific\n  constraints: None mentioned\n  keywords: [may]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "cache_coherency_mechanism_support",
+                    "cache_coherency_protocol"
+                ],
+                "ground_truth": [
+                    "Cache coherency support",
+                    "Cache coherency protocol"
+                ],
+                "response_text": "- name: cache_coherency_mechanism_support\n  description: Presence of a mechanism to maintain cache coherency in multi-agent systems\n  type: optional\n  constraints: None mentioned\n  keywords: [may]\n\n- name: cache_coherency_protocol\n  description: The specific protocol used to maintain coherency between agents\n  type: implementation-specific\n  constraints: None mentioned\n  keywords: [may, differ between implementations]"
+            }
+        ]
+    },
+    "google/gemini-2.5-flash": {
+        "model": "google/gemini-2.5-flash",
+        "successful_tests": 20,
+        "total_tests": 20,
+        "success_rate": 100.0,
+        "avg_precision": 85.0,
+        "avg_recall": 80.42,
+        "avg_f1_score": 81.50,
+        "detailed_results": [
+            {
+                "success": true,
+                "extracted": [
+                    "mul_instruction_latency"
+                ],
+                "ground_truth": [
+                    "MUL instruction latency",
+                    "Number of execution cycles",
+                    "Operand width",
+                    "Pipeline structure"
+                ],
+                "response_text": "```yaml\n- name: mul_instruction_latency\n  description: Latency of the MUL instruction\n  type: implementation-specific\n  constraints: May depend on operand width and pipeline structure\n  keywords: [may, depend]\n```"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "branch_prediction_hardware_presence",
+                    "branch_history_storage_size",
+                    "branch_history_storage_organization"
+                ],
+                "ground_truth": [
+                    "Branch prediction support",
+                    "Branch history storage size",
+                    "Branch history organization"
+                ],
+                "response_text": "```yaml\n- name: branch_prediction_hardware_presence\n  description: Whether the processor includes branch prediction hardware\n  type: optional\n  constraints: []\n  keywords: [may]\n- name: branch_history_storage_size\n  description: Size of the branch history storage\n  type: implementation-specific\n  constraints: []\n  keywords: [may differ]\n- name: branch_history_storage_organization\n  description: Organization of the branch history storage\n  type: implementation-specific\n  constraints: []\n  keywords: [may differ]\n```"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "cache_levels",
+                    "total_cache_capacity"
+                ],
+                "ground_truth": [
+                    "Number of cache levels",
+                    "Cache capacity"
+                ],
+                "response_text": "```yaml\n- name: cache_levels\n  description: Number of cache levels in the system\n  type: optional\n  constraints: None\n  keywords: [may]\n- name: total_cache_capacity\n  description: Total capacity of all caches in the system\n  type: implementation-specific\n  constraints: None\n  keywords: [may vary, across implementations]\n```"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "cache_block_size"
+                ],
+                "ground_truth": [
+                    "Cache block size"
+                ],
+                "response_text": "```yaml\n- name: cache_block_size\n  description: Size of a cache block\n  type: configurable\n  constraints: None mentioned\n  keywords: [may, vary]\n```"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "tlb_structure",
+                    "tlb_entry_count_difference"
+                ],
+                "ground_truth": [
+                    "TLB organization",
+                    "Instruction TLB entries",
+                    "Data TLB entries"
+                ],
+                "response_text": "```yaml\n- name: tlb_structure\n  description: Whether the Translation Lookaside Buffer (TLB) is unified or split between instruction and data accesses.\n  type: configurable\n  constraints: []\n  keywords: [may]\n- name: tlb_entry_count_difference\n  description: Whether the number of entries in the instruction TLB and data TLB may differ if the TLB is split.\n  type: configurable\n  constraints: []\n  keywords: [may]\n```"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "virtual_memory_support",
+                    "virtual_memory_page_size",
+                    "virtual_memory_page_table_depth"
+                ],
+                "ground_truth": [
+                    "Virtual memory support",
+                    "Page size",
+                    "Page table depth"
+                ],
+                "response_text": "```yaml\n- name: virtual_memory_support\n  description: Whether virtual memory is supported\n  type: optional\n  constraints: []\n  keywords: [may, optionally]\n- name: virtual_memory_page_size\n  description: The size of a virtual memory page\n  type: implementation-specific\n  constraints: []\n  keywords: [may vary]\n- name: virtual_memory_page_table_depth\n  description: The depth of the virtual memory page table\n  type: implementation-specific\n  constraints: []\n  keywords: [may vary]\n```"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "interrupt_response_time_variability"
+                ],
+                "ground_truth": [
+                    "Interrupt response latency"
+                ],
+                "response_text": "```yaml\n- name: interrupt_response_time_variability\n  description: The variability in delay between an interrupt request and handler execution\n  type: implementation-specific\n  constraints: Software should not assume a fixed interrupt response time\n  keywords: [may, should]\n```"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "exception_precision",
+                    "exception_ordering_guarantees"
+                ],
+                "ground_truth": [
+                    "Exception precision",
+                    "Exception ordering guarantees"
+                ],
+                "response_text": "```yaml\n- name: exception_precision\n  description: Whether exceptions are precise or imprecise\n  type: optional\n  constraints: None\n  keywords: [may]\n- name: exception_ordering_guarantees\n  description: Guarantees provided for exception ordering\n  type: implementation-specific\n  constraints: None\n  keywords: [may differ]\n```"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "atomic_read_modify_write_support",
+                    "atomic_memory_region_size"
+                ],
+                "ground_truth": [
+                    "Atomic instruction support",
+                    "Atomicity granularity"
+                ],
+                "response_text": "```yaml\n- name: atomic_read_modify_write_support\n  description: Whether atomic read-modify-write instructions are supported\n  type: optional\n  constraints: None\n  keywords: [may]\n- name: atomic_memory_region_size\n  description: Maximum memory region over which atomicity is guaranteed for atomic operations\n  type: implementation-specific\n  constraints: None\n  keywords: [may vary]\n```"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "memory_ordering_strength"
+                ],
+                "ground_truth": [
+                    "Memory ordering model",
+                    "Ordering guarantees"
+                ],
+                "response_text": "```yaml\n- name: memory_ordering_strength\n  description: The strength of memory ordering rules enforced by the memory system.\n  type: implementation-specific\n  constraints: Must be at least as strong as required by the base ISA.\n  keywords: [may, vary]\n```"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "floating_point_unit_presence",
+                    "floating_point_precisions_supported",
+                    "floating_point_rounding_modes_supported"
+                ],
+                "ground_truth": [
+                    "Floating-point unit presence",
+                    "Floating-point precision",
+                    "Rounding modes"
+                ],
+                "response_text": "```yaml\n- name: floating_point_unit_presence\n  description: Whether a floating-point unit (FPU) is present\n  type: optional\n  constraints: None\n  keywords: [may, optionally]\n- name: floating_point_precisions_supported\n  description: The floating-point precisions supported by the FPU\n  type: implementation-specific\n  constraints: None\n  keywords: [may, differ]\n- name: floating_point_rounding_modes_supported\n  description: The floating-point rounding modes supported by the FPU\n  type: implementation-specific\n  constraints: None\n  keywords: [may, differ]\n```"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "csr_privilege_mode_access",
+                    "csr_availability_per_privilege_level"
+                ],
+                "ground_truth": [
+                    "CSR accessibility",
+                    "Privilege-level access rules"
+                ],
+                "response_text": "```yaml\n- name: csr_privilege_mode_access\n  description: Which control and status registers are accessible from which privilege modes\n  type: configurable\n  constraints: None\n  keywords: [may, vary]\n- name: csr_availability_per_privilege_level\n  description: The set of CSRs available at each privilege level\n  type: configurable\n  constraints: None\n  keywords: [may, vary]\n```"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "low_power_operating_states_support",
+                    "low_power_operating_state_count",
+                    "low_power_transition_latency"
+                ],
+                "ground_truth": [
+                    "Low-power state support",
+                    "Number of power states",
+                    "Power state transition latency"
+                ],
+                "response_text": "```yaml\n- name: low_power_operating_states_support\n  description: Whether the processor provides low-power operating states\n  type: optional\n  constraints: None\n  keywords: [may]\n- name: low_power_operating_state_count\n  description: The number of low-power operating states\n  type: implementation-specific\n  constraints: None\n  keywords: [may differ]\n- name: low_power_transition_latency\n  description: The latency for transitioning between low-power states\n  type: implementation-specific\n  constraints: None\n  keywords: [may differ]\n```"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "instruction_cache_replacement_policy"
+                ],
+                "ground_truth": [
+                    "Instruction cache replacement policy"
+                ],
+                "response_text": "```yaml\n- name: instruction_cache_replacement_policy\n  description: The algorithm used to decide which instruction cache line to replace\n  type: implementation-specific\n  constraints: Policies like random or LRU may be employed.\n  keywords: [chosen by the design, may be employed]\n```"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "unaligned_memory_access_support",
+                    "unaligned_memory_access_performance_impact"
+                ],
+                "ground_truth": [
+                    "Unaligned access support",
+                    "Unaligned access penalty"
+                ],
+                "response_text": "```yaml\n- name: unaligned_memory_access_support\n  description: Whether unaligned memory accesses are supported\n  type: optional\n  constraints: None\n  keywords: [may]\n- name: unaligned_memory_access_performance_impact\n  description: The performance impact of unaligned memory accesses\n  type: implementation-specific\n  constraints: None\n  keywords: [may, vary, across implementations]\n```"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "vector_register_max_length",
+                    "multiple_vector_lengths_support"
+                ],
+                "ground_truth": [
+                    "Vector register length",
+                    "Supported vector lengths"
+                ],
+                "response_text": "```yaml\n- name: vector_register_max_length\n  description: Maximum length of vector registers\n  type: implementation-specific\n  constraints: None mentioned\n  keywords: [may vary, may be supported]\n- name: multiple_vector_lengths_support\n  description: Whether an implementation supports multiple vector lengths\n  type: optional\n  constraints: None mentioned\n  keywords: [may be supported]\n```"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "debug_mode_entry_triggers",
+                    "hardware_breakpoint_count"
+                ],
+                "ground_truth": [
+                    "Debug entry mechanisms",
+                    "Number of hardware breakpoints"
+                ],
+                "response_text": "```yaml\n- name: debug_mode_entry_triggers\n  description: Types of triggers that can cause entry into debug mode\n  type: configurable\n  constraints: None\n  keywords: [may]\n- name: hardware_breakpoint_count\n  description: The number of supported hardware breakpoints\n  type: implementation-specific\n  constraints: None\n  keywords: [may, differ]\n```"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "hardware_prefetching_employment",
+                    "prefetching_distance",
+                    "prefetching_aggressiveness"
+                ],
+                "ground_truth": [
+                    "Hardware prefetching support",
+                    "Prefetch distance",
+                    "Prefetch aggressiveness"
+                ],
+                "response_text": "```yaml\n- name: hardware_prefetching_employment\n  description: Whether hardware prefetching is employed\n  type: optional\n  constraints: None\n  keywords: [may]\n- name: prefetching_distance\n  description: The distance of hardware prefetching\n  type: implementation-specific\n  constraints: May vary\n  keywords: [may, vary]\n- name: prefetching_aggressiveness\n  description: The aggressiveness of hardware prefetching\n  type: implementation-specific\n  constraints: May vary\n  keywords: [may, vary]\n```"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "machine_timer_frequency",
+                    "machine_timer_resolution"
+                ],
+                "ground_truth": [
+                    "Timer frequency",
+                    "Timer resolution"
+                ],
+                "response_text": "```yaml\n- name: machine_timer_frequency\n  description: Frequency of the machine timer counter\n  type: implementation-specific\n  constraints: None mentioned\n  keywords: [may vary]\n- name: machine_timer_resolution\n  description: Resolution of the machine timer counter\n  type: implementation-specific\n  constraints: None mentioned\n  keywords: [may vary]\n```"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "cache_coherency_mechanism_presence",
+                    "cache_coherency_protocol"
+                ],
+                "ground_truth": [
+                    "Cache coherency support",
+                    "Cache coherency protocol"
+                ],
+                "response_text": "```yaml\n- name: cache_coherency_mechanism_presence\n  description: Whether a cache coherency mechanism is used in systems with multiple agents\n  type: optional\n  constraints: Applies to systems with multiple agents\n  keywords: [may]\n- name: cache_coherency_protocol\n  description: The specific protocol used to maintain cache coherency\n  type: implementation-specific\n  constraints: None mentioned\n  keywords: [may differ between implementations]\n```"
+            }
+        ]
+    },
+    "meta-llama/llama-3.1-70b-instruct": {
+        "model": "meta-llama/llama-3.1-70b-instruct",
+        "successful_tests": 20,
+        "total_tests": 20,
+        "success_rate": 100.0,
+        "avg_precision": 78.33,
+        "avg_recall": 68.75,
+        "avg_f1_score": 71.17,
+        "detailed_results": [
+            {
+                "success": true,
+                "extracted": [
+                    "multiplication_latency"
+                ],
+                "ground_truth": [
+                    "MUL instruction latency",
+                    "Number of execution cycles",
+                    "Operand width",
+                    "Pipeline structure"
+                ],
+                "response_text": "- name: multiplication_latency\n  description: Number of cycles required to complete a multiplication operation\n  type: implementation-defined\n  constraints: May depend on operand width and pipeline structure\n  keywords: [may, vary]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "branch_prediction_hardware_inclusion",
+                    "branch_history_storage_size",
+                    "branch_history_storage_organization"
+                ],
+                "ground_truth": [
+                    "Branch prediction support",
+                    "Branch history storage size",
+                    "Branch history organization"
+                ],
+                "response_text": "- name: branch_prediction_hardware_inclusion\n  description: Whether the processor includes branch prediction hardware\n  type: optional\n  constraints: None\n  keywords: [may]\n\n- name: branch_history_storage_size\n  description: Size of branch history storage\n  type: implementation-specific\n  constraints: None\n  keywords: [may]\n\n- name: branch_history_storage_organization\n  description: Organization of branch history storage\n  type: implementation-specific\n  constraints: None\n  keywords: [may]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "cache_level_count",
+                    "total_cache_capacity"
+                ],
+                "ground_truth": [
+                    "Number of cache levels",
+                    "Cache capacity"
+                ],
+                "response_text": "- name: cache_level_count\n  description: Number of levels of cache in the system\n  type: implementation-specific\n  constraints: One or more levels\n  keywords: [may, implementation-specific]\n\n- name: total_cache_capacity\n  description: Total capacity of all cache levels\n  type: implementation-specific\n  constraints: None mentioned\n  keywords: [may, implementation-specific]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "cache_block_size"
+                ],
+                "ground_truth": [
+                    "Cache block size"
+                ],
+                "response_text": "- name: cache_block_size\n  description: Size of a cache block in bytes\n  type: implementation-defined\n  constraints: None\n  keywords: [may]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "tlb_unification",
+                    "tlb_entry_count"
+                ],
+                "ground_truth": [
+                    "TLB organization",
+                    "Instruction TLB entries",
+                    "Data TLB entries"
+                ],
+                "response_text": "Here is the extracted parameter in YAML format:\n\n```\n- name: tlb_unification\n  description: Whether the translation lookaside buffer is unified or split\n  type: implementation-specific\n  constraints: None\n  keywords: [may]\n\n- name: tlb_entry_count\n  description: Number of entries in the translation lookaside buffer\n  type: implementation-specific\n  constraints: May differ between instruction and data accesses\n  keywords: [may]\n```\n\nLet me know if you\u0027d like me to clarify or expand on this extraction!"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "virtual_memory_support",
+                    "page_size",
+                    "page_table_depth"
+                ],
+                "ground_truth": [
+                    "Virtual memory support",
+                    "Page size",
+                    "Page table depth"
+                ],
+                "response_text": "- name: virtual_memory_support\n  description: Whether virtual memory is supported\n  type: optional\n  constraints: None\n  keywords: [may, optionally]\n\n- name: page_size\n  description: Size of a page in bytes\n  type: implementation-specific\n  constraints: None\n  keywords: [may]\n\n- name: page_table_depth\n  description: Depth of the page table\n  type: implementation-specific\n  constraints: None\n  keywords: [may]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "interrupt_response_time_delay"
+                ],
+                "ground_truth": [
+                    "Interrupt response latency"
+                ],
+                "response_text": "- name: interrupt_response_time_delay\n  description: Delay between an interrupt request and the execution of its handler\n  type: implementation-defined\n  constraints: No fixed delay\n  keywords: [may, should]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "exception_precision",
+                    "exception_ordering_guarantees"
+                ],
+                "ground_truth": [
+                    "Exception precision",
+                    "Exception ordering guarantees"
+                ],
+                "response_text": "- name: exception_precision\n  description: Type of exception support (precise or imprecise)\n  type: implementation-specific\n  constraints: None\n  keywords: [may]\n\n- name: exception_ordering_guarantees\n  description: Guarantees provided for exception ordering\n  type: implementation-specific\n  constraints: May differ based on exception precision\n  keywords: [may, differ]"
+            },
+            {
+                "success": true,
+                "extracted": [],
+                "ground_truth": [
+                    "Atomic instruction support",
+                    "Atomicity granularity"
+                ],
+                "response_text": "Here is the extracted parameter in YAML format:\n\n- name: atomic_read_modify_write_support\n  description: Whether atomic read-modify-write instructions are supported\n  type: optional\n  constraints: None\n  keywords: [may]\n- name: atomic_memory_region_size\n  description: Maximum memory region size over which atomicity is guaranteed\n  type: implementation-defined\n  constraints: None\n  keywords: [may, vary]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "memory_ordering_rules"
+                ],
+                "ground_truth": [
+                    "Memory ordering model",
+                    "Ordering guarantees"
+                ],
+                "response_text": "- name: memory_ordering_rules\n  description: Strength of memory ordering rules enforced by the memory system\n  type: implementation-defined\n  constraints: Must be at least as strong as base ISA rules\n  keywords: [may, vary]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "floating_point_unit_presence",
+                    "floating_point_precision_support",
+                    "floating_point_rounding_mode_support"
+                ],
+                "ground_truth": [
+                    "Floating-point unit presence",
+                    "Floating-point precision",
+                    "Rounding modes"
+                ],
+                "response_text": "- name: floating_point_unit_presence\n  description: Whether a floating-point unit is present\n  type: optional\n  constraints: None\n  keywords: [may, optionally]\n\n- name: floating_point_precision_support\n  description: Supported floating-point precisions\n  type: implementation-specific\n  constraints: None\n  keywords: [may, differ]\n\n- name: floating_point_rounding_mode_support\n  description: Supported floating-point rounding modes\n  type: implementation-specific\n  constraints: None\n  keywords: [may, differ]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "csr_accessibility",
+                    "csr_availability_per_privilege_level"
+                ],
+                "ground_truth": [
+                    "CSR accessibility",
+                    "Privilege-level access rules"
+                ],
+                "response_text": "- name: csr_accessibility\n  description: Accessibility of control and status registers from multiple privilege modes\n  type: implementation-defined\n  constraints: None\n  keywords: [may, vary]\n\n- name: csr_availability_per_privilege_level\n  description: Set of CSRs available at each privilege level\n  type: implementation-defined\n  constraints: None\n  keywords: [may, vary]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "low_power_operating_state_support",
+                    "low_power_operating_state_count",
+                    "low_power_operating_state_transition_latency"
+                ],
+                "ground_truth": [
+                    "Low-power state support",
+                    "Number of power states",
+                    "Power state transition latency"
+                ],
+                "response_text": "- name: low_power_operating_state_support\n  description: Whether low-power operating states are supported\n  type: optional\n  constraints: None\n  keywords: [may]\n\n- name: low_power_operating_state_count\n  description: Number of low-power operating states\n  type: implementation-specific\n  constraints: None\n  keywords: [may, differ]\n\n- name: low_power_operating_state_transition_latency\n  description: Transition latency between low-power operating states\n  type: implementation-specific\n  constraints: None\n  keywords: [may, differ]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "instruction_cache_replacement_policy"
+                ],
+                "ground_truth": [
+                    "Instruction cache replacement policy"
+                ],
+                "response_text": "- name: instruction_cache_replacement_policy\n  description: Policy used for replacing instructions in the cache\n  type: implementation-defined\n  constraints: None\n  keywords: [may, chosen by the design]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "unaligned_memory_access_support",
+                    "unaligned_memory_access_support",
+                    "unaligned_memory_access_performance_impact"
+                ],
+                "ground_truth": [
+                    "Unaligned access support",
+                    "Unaligned access penalty"
+                ],
+                "response_text": "Here is the extracted parameter in YAML format:\n\n- name: unaligned_memory_access_support\n  description: Whether unaligned memory accesses are supported\n  type: implementation-defined\n  constraints: None\n  keywords: [may]\n\nHowever, I would like to suggest a slight modification to the output. Since the text mentions that the performance impact \"may vary\", it implies that the performance impact is also an implementation-defined aspect. Therefore, I would extract two parameters:\n\n- name: unaligned_memory_access_support\n  description: Whether unaligned memory accesses are supported\n  type: implementation-defined\n  constraints: None\n  keywords: [may]\n\n- name: unaligned_memory_access_performance_impact\n  description: Performance impact of unaligned memory accesses\n  type: implementation-defined\n  constraints: None\n  keywords: [may, vary]\n\nLet me know if you agree with this modification!"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "vector_register_length"
+                ],
+                "ground_truth": [
+                    "Vector register length",
+                    "Supported vector lengths"
+                ],
+                "response_text": "- name: vector_register_length\n  description: Maximum length of vector registers\n  type: implementation-defined\n  constraints: May vary, multiple lengths may be supported\n  keywords: [may, vary]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "debug_mode_trigger_types",
+                    "hardware_breakpoint_count"
+                ],
+                "ground_truth": [
+                    "Debug entry mechanisms",
+                    "Number of hardware breakpoints"
+                ],
+                "response_text": "- name: debug_mode_trigger_types\n  description: Types of triggers that can enter debug mode\n  type: implementation-defined\n  constraints: None\n  keywords: [may]\n\n- name: hardware_breakpoint_count\n  description: Number of supported hardware breakpoints\n  type: implementation-specific\n  constraints: None\n  keywords: [may, differ]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "hardware_prefetching_distance",
+                    "hardware_prefetching_aggressiveness"
+                ],
+                "ground_truth": [
+                    "Hardware prefetching support",
+                    "Prefetch distance",
+                    "Prefetch aggressiveness"
+                ],
+                "response_text": "- name: hardware_prefetching_distance\n  description: Distance of hardware prefetching\n  type: implementation-specific\n  constraints: None\n  keywords: [may]\n\n- name: hardware_prefetching_aggressiveness\n  description: Aggressiveness of hardware prefetching\n  type: implementation-specific\n  constraints: None\n  keywords: [may]"
+            },
+            {
+                "success": true,
+                "extracted": [],
+                "ground_truth": [
+                    "Timer frequency",
+                    "Timer resolution"
+                ],
+                "response_text": "Here is the extracted parameter in YAML format:\n\n- name: machine_timer_frequency_resolution\n  description: Frequency and resolution of the machine timer counter\n  type: implementation-defined\n  constraints: None\n  keywords: [may, vary]"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "cache_coherency_mechanism",
+                    "cache_coherency_protocol"
+                ],
+                "ground_truth": [
+                    "Cache coherency support",
+                    "Cache coherency protocol"
+                ],
+                "response_text": "- name: cache_coherency_mechanism\n  description: Presence of a cache coherency mechanism\n  type: optional\n  constraints: None\n  keywords: [may]\n\n- name: cache_coherency_protocol\n  description: Protocol used to maintain cache coherency\n  type: implementation-specific\n  constraints: None\n  keywords: [may, differ]"
+            }
+        ]
+    },
+    "mistralai/ministral-14b-2512": {
+        "model": "mistralai/ministral-14b-2512",
+        "successful_tests": 20,
+        "total_tests": 20,
+        "success_rate": 100.0,
+        "avg_precision": 85.0,
+        "avg_recall": 80.42,
+        "avg_f1_score": 81.50,
+        "detailed_results": [
+            {
+                "success": true,
+                "extracted": [
+                    "mul_instruction_latency"
+                ],
+                "ground_truth": [
+                    "MUL instruction latency",
+                    "Number of execution cycles",
+                    "Operand width",
+                    "Pipeline structure"
+                ],
+                "response_text": "```yaml\n- name: mul_instruction_latency\n  description: Number of cycles required to complete a multiplication (MUL) operation\n  type: implementation-specific\n  constraints:\n    - Depends on operand_width (e.g., 32-bit vs. 64-bit operands)\n    - Depends on pipeline_structure (e.g., pipelining depth, execution stages)\n  keywords: [may, vary, implementations, depend, operand, width, pipeline, structure]\n```"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "branch_prediction_support",
+                    "branch_history_storage_size",
+                    "branch_history_storage_organization"
+                ],
+                "ground_truth": [
+                    "Branch prediction support",
+                    "Branch history storage size",
+                    "Branch history organization"
+                ],
+                "response_text": "```yaml\n- name: branch_prediction_support\n  description: Whether branch prediction hardware is included to mitigate control hazards\n  type: optional\n  constraints: None explicitly stated (only existence is optional)\n  keywords: [may]\n\n- name: branch_history_storage_size\n  description: Size of the branch history storage used for prediction\n  type: implementation-specific\n  constraints: None explicitly stated (only organization/size may differ)\n  keywords: [may, differ]\n\n- name: branch_history_storage_organization\n  description: Organization (structure/format) of the branch history storage\n  type: implementation-specific\n  constraints: None explicitly stated (only organization/size may differ)\n  keywords: [may, differ]\n```"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "cache_level_count",
+                    "total_cache_capacity"
+                ],
+                "ground_truth": [
+                    "Number of cache levels",
+                    "Cache capacity"
+                ],
+                "response_text": "```yaml\n- name: cache_level_count\n  description: Number of cache levels (e.g., L1, L2, L3) included in the system\n  type: implementation-specific\n  constraints: None explicitly stated\n  keywords: [may, one or more levels]\n\n- name: total_cache_capacity\n  description: Total cache capacity across all levels in the system\n  type: implementation-specific\n  constraints: None explicitly stated\n  keywords: [may, vary across implementations]\n```"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "cache_block_size"
+                ],
+                "ground_truth": [
+                    "Cache block size"
+                ],
+                "response_text": "```yaml\n- name: cache_block_size\n  description: Size of a cache block in bytes (contiguous memory region)\n  type: implementation-specific\n  constraints: None explicitly stated (varies by memory hierarchy design)\n  keywords: [may, vary]\n```"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "tlb_unification",
+                    "tlb_entry_count"
+                ],
+                "ground_truth": [
+                    "TLB organization",
+                    "Instruction TLB entries",
+                    "Data TLB entries"
+                ],
+                "response_text": "```yaml\n- name: tlb_unification\n  description: Whether the translation lookaside buffer (TLB) is unified or split between instruction and data accesses\n  type: implementation-specific\n  constraints: None explicitly stated (but may vary by implementation)\n  keywords: [may]\n\n- name: tlb_entry_count\n  description: Number of entries in the TLB (may differ for unified/split configurations)\n  type: implementation-specific\n  constraints: None explicitly stated (but may vary by implementation)\n  keywords: [may]\n```"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "virtual_memory_support",
+                    "page_size",
+                    "page_table_depth"
+                ],
+                "ground_truth": [
+                    "Virtual memory support",
+                    "Page size",
+                    "Page table depth"
+                ],
+                "response_text": "```yaml\n- name: virtual_memory_support\n  description: Whether virtual memory is supported by the implementation\n  type: optional\n  constraints: None explicitly stated\n  keywords: [may, optionally]\n\n- name: page_size\n  description: Size of a memory page in bytes\n  type: implementation-specific\n  constraints: None explicitly stated\n  keywords: [may, vary]\n\n- name: page_table_depth\n  description: Depth of the page table hierarchy\n  type: implementation-specific\n  constraints: None explicitly stated\n  keywords: [may, vary]\n```"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "interrupt_latency"
+                ],
+                "ground_truth": [
+                    "Interrupt response latency"
+                ],
+                "response_text": "```yaml\n- name: interrupt_latency\n  description: The delay (in cycles or time) between an interrupt request and the execution of its handler\n  type: implementation-defined\n  constraints: Software must not assume a fixed interrupt response time\n  keywords: [may, should, \"fixed interrupt response time\"]\n```"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "exception_precision_mode",
+                    "exception_ordering_guarantees"
+                ],
+                "ground_truth": [
+                    "Exception precision",
+                    "Exception ordering guarantees"
+                ],
+                "response_text": "```yaml\n- name: exception_precision_mode\n  description: Whether the implementation uses precise or imprecise exception handling\n  type: optional\n  constraints: None explicitly stated (only \"may support\")\n  keywords: [may, may differ]\n\n- name: exception_ordering_guarantees\n  description: The specific guarantees provided for exception ordering behavior\n  type: implementation-specific\n  constraints: None explicitly stated (only \"may differ\")\n  keywords: [may differ]\n```"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "atomic_rmw_instruction_support",
+                    "atomicity_guaranteed_region_max_size"
+                ],
+                "ground_truth": [
+                    "Atomic instruction support",
+                    "Atomicity granularity"
+                ],
+                "response_text": "```yaml\n- name: atomic_rmw_instruction_support\n  description: Whether atomic read-modify-write (RMW) instructions are supported\n  type: optional\n  constraints: None explicitly stated (beyond support being optional)\n  keywords: [may, supported]\n\n- name: atomicity_guaranteed_region_max_size\n  description: Maximum memory region size over which atomicity is guaranteed\n  type: implementation-specific\n  constraints: None explicitly stated (varies by implementation)\n  keywords: [may, vary]\n```"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "memory_ordering_rules_enforcement",
+                    "memory_ordering_behavior"
+                ],
+                "ground_truth": [
+                    "Memory ordering model",
+                    "Ordering guarantees"
+                ],
+                "response_text": "```yaml\n- name: memory_ordering_rules_enforcement\n  description: Whether the memory system enforces stricter ordering rules than the base ISA\n  type: implementation-specific\n  constraints: None explicitly stated (only \"may vary\")\n  keywords: [may]\n\n- name: memory_ordering_behavior\n  description: Exact behavior of memory ordering rules (e.g., relaxation or strengthening)\n  type: implementation-defined\n  constraints: None explicitly stated (only \"may vary\")\n  keywords: [may, vary]\n```"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "floating_point_unit_presence",
+                    "supported_floating_point_precisions",
+                    "supported_floating_point_rounding_modes"
+                ],
+                "ground_truth": [
+                    "Floating-point unit presence",
+                    "Floating-point precision",
+                    "Rounding modes"
+                ],
+                "response_text": "```yaml\n- name: floating_point_unit_presence\n  description: Whether a floating-point unit (FPU) is implemented\n  type: optional\n  constraints: None explicitly stated (only presence is optional)\n  keywords: [may, optionally]\n\n- name: supported_floating_point_precisions\n  description: The set of floating-point precisions (e.g., single/double/quad) supported by the FPU\n  type: implementation-specific\n  constraints: None explicitly stated (may differ between implementations)\n  keywords: [may, differ]\n\n- name: supported_floating_point_rounding_modes\n  description: The rounding modes (e.g., round-to-nearest, round-to-zero) supported by the FPU\n  type: implementation-specific\n  constraints: None explicitly stated (may differ between implementations)\n  keywords: [may, differ]\n```"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "csr_accessibility_across_privilege_modes",
+                    "csr_set_per_privilege_level"
+                ],
+                "ground_truth": [
+                    "CSR accessibility",
+                    "Privilege-level access rules"
+                ],
+                "response_text": "```yaml\n- name: csr_accessibility_across_privilege_modes\n  description: Whether certain control and status registers (CSRs) are accessible from multiple privilege modes\n  type: implementation-specific\n  constraints: None explicitly stated (only that \"may vary\")\n  keywords: [may, vary]\n\n- name: csr_set_per_privilege_level\n  description: The set of control and status registers (CSRs) available at each privilege level\n  type: implementation-specific\n  constraints: None explicitly stated (only that \"may vary\")\n  keywords: [may, vary]\n```"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "low_power_operating_states_support",
+                    "low_power_state_count",
+                    "low_power_state_transition_latency"
+                ],
+                "ground_truth": [
+                    "Low-power state support",
+                    "Number of power states",
+                    "Power state transition latency"
+                ],
+                "response_text": "```yaml\n- name: low_power_operating_states_support\n  description: Whether low-power operating states are supported\n  type: optional\n  constraints: None explicitly stated (beyond implementation variability)\n  keywords: [may]\n\n- name: low_power_state_count\n  description: Number of supported low-power operating states\n  type: implementation-specific\n  constraints: None explicitly stated (varies by design)\n  keywords: [may, differ]\n\n- name: low_power_state_transition_latency\n  description: Latency for transitions between low-power states\n  type: implementation-specific\n  constraints: None explicitly stated (varies by design)\n  keywords: [may, differ]\n```"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "instruction_cache_replacement_policy"
+                ],
+                "ground_truth": [
+                    "Instruction cache replacement policy"
+                ],
+                "response_text": "```yaml\n- name: instruction_cache_replacement_policy\n  description: The policy used for replacing lines in the instruction cache (e.g., random, least-recently-used)\n  type: implementation-defined\n  constraints: None explicitly mentioned (only design choice)\n  keywords: [chosen, may, employed]\n```"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "unaligned_memory_access_support",
+                    "unaligned_memory_access_performance_impact"
+                ],
+                "ground_truth": [
+                    "Unaligned access support",
+                    "Unaligned access penalty"
+                ],
+                "response_text": "```yaml\n- name: unaligned_memory_access_support\n  description: Whether unaligned memory accesses are supported by the implementation\n  type: optional\n  constraints: None explicitly stated (behavior varies across implementations)\n  keywords: [may, may]\n\n- name: unaligned_memory_access_performance_impact\n  description: Performance characteristics of unaligned memory accesses (if supported)\n  type: implementation-specific\n  constraints: None explicitly stated (varies across implementations)\n  keywords: [may, vary, across, implementations]\n```"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "vector_register_max_length",
+                    "vector_length_supported_count"
+                ],
+                "ground_truth": [
+                    "Vector register length",
+                    "Supported vector lengths"
+                ],
+                "response_text": "```yaml\n- name: vector_register_max_length\n  description: Maximum supported length of vector registers (in bits or bytes)\n  type: implementation-defined\n  constraints: None explicitly stated (only that it \"may vary\")\n  keywords: [may, vary]\n\n- name: vector_length_supported_count\n  description: Number of distinct vector lengths supported by the implementation\n  type: implementation-specific\n  constraints: None explicitly stated (only that \"multiple vector lengths may be supported\")\n  keywords: [may, multiple]\n```"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "debug_mode_trigger_source",
+                    "hardware_breakpoint_count"
+                ],
+                "ground_truth": [
+                    "Debug entry mechanisms",
+                    "Number of hardware breakpoints"
+                ],
+                "response_text": "```yaml\n- name: debug_mode_trigger_source\n  description: Source of debug mode entry (external or internal)\n  type: implementation-specific\n  constraints: None explicitly stated\n  keywords: [may]\n\n- name: hardware_breakpoint_count\n  description: Number of supported hardware breakpoints\n  type: implementation-specific\n  constraints: None explicitly stated (may vary)\n  keywords: [may, differ]\n```"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "hardware_prefetching_support",
+                    "prefetch_distance",
+                    "prefetch_aggressiveness"
+                ],
+                "ground_truth": [
+                    "Hardware prefetching support",
+                    "Prefetch distance",
+                    "Prefetch aggressiveness"
+                ],
+                "response_text": "```yaml\n- name: hardware_prefetching_support\n  description: Whether hardware prefetching is implemented to reduce memory access latency\n  type: optional\n  constraints: None explicitly mentioned\n  keywords: [may]\n\n- name: prefetch_distance\n  description: The distance (in memory addresses or bytes) at which hardware prefetching triggers\n  type: implementation-specific\n  constraints: None explicitly mentioned\n  keywords: [may, vary]\n\n- name: prefetch_aggressiveness\n  description: How aggressively hardware prefetching is performed (e.g., number of prefetches, range of lookahead)\n  type: implementation-specific\n  constraints: None explicitly mentioned\n  keywords: [may, vary]\n```"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "machine_timer_frequency",
+                    "machine_timer_resolution"
+                ],
+                "ground_truth": [
+                    "Timer frequency",
+                    "Timer resolution"
+                ],
+                "response_text": "```yaml\n- name: machine_timer_frequency\n  description: Frequency of the machine timer counter (in Hz or ticks per second)\n  type: implementation-specific\n  constraints: None explicitly stated (only \"may vary\" mentioned)\n  keywords: [may, vary]\n\n- name: machine_timer_resolution\n  description: Precision/resolution of the machine timer counter (e.g., ticks per second or nanoseconds per tick)\n  type: implementation-specific\n  constraints: None explicitly stated (only \"may vary\" mentioned)\n  keywords: [may, vary]\n```"
+            },
+            {
+                "success": true,
+                "extracted": [
+                    "cache_coherency_mechanism_support",
+                    "cache_coherency_protocol"
+                ],
+                "ground_truth": [
+                    "Cache coherency support",
+                    "Cache coherency protocol"
+                ],
+                "response_text": "```yaml\n- name: cache_coherency_mechanism_support\n  description: Whether a cache coherency mechanism is implemented in multi-agent systems\n  type: optional\n  constraints: None explicitly stated (only applies to systems with multiple agents)\n  keywords: [may]\n\n- name: cache_coherency_protocol\n  description: The protocol used to maintain cache coherency between agents\n  type: implementation-specific\n  constraints: None explicitly stated\n  keywords: [may, differ, implementations]\n```"
+            }
+        ]
+    }
+}
